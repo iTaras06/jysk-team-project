@@ -10,44 +10,44 @@ export default function Header() {
 
         <div className="w-full border-b border-[#00000080]">
 
-            <div className="mx-[5%] flex h-[150px]  items-center p1-10">
-                <Image src="/icons/logo.png" alt="logo" width={110} height={71}/>
+          <div className="mx-[5%] flex h-[150px] items-center px-10">
+            <Image src="/icons/logo.png" alt="logo" width={110} height={71} />
 
-                <div className="ml-10 flex items-center gap-14 cursor-pointer">
+            <div className="ml-10 flex items-center gap-14 cursor-pointer">
 
-                    <div className="flex h-[30px] w-[56px] flex-col justify-between">
-                        <span className="h-[4px] w-full bg-black"></span>
-                        <span className="h-[4px] w-full bg-black"></span>
-                        <span className="h-[4px] w-full bg-black"></span>
-                    </div>
+              <div className="flex h-[30px] w-[56px] flex-col justify-between">
+                <span className="h-[4px] w-full bg-black"></span>
+                <span className="h-[4px] w-full bg-black"></span>
+                <span className="h-[4px] w-full bg-black"></span>
+              </div>
 
-                    <span className="text-[30px] font-medium">Меню</span>
-
-                </div>
-
-
-
-
-            <div className="ml-16 flex h-[71px] flex-1 max-w-[670px] items-center rounded-[10px] bg-[#E0E0E0] px-6">
-
-                <input type="text" placeholder="Пошук..." className="flex-1 bg-transparent text-[24px] text-[#231F2082] outline-none placeholder:text-[#231F2082]" />
-
-                <button className="shrink-0">
-                    <Image src="/icons/lens.png" alt="lens" width={29} height={29}/>
-                </button>
+              <span className="text-[30px] font-medium">Меню</span>
 
             </div>
 
 
 
 
-          <div className="ml-auto flex shrink-0 items-center gap-25">
-            <button><Image src="/icons/fav.png" alt="fav" width={75} height={60}/></button>
-            <button><Image src="/icons/prof.png" alt="prof" width={40} height={62}/></button>
-            <button><Image src="/icons/cart.png" alt="cart" width={64} height={63}/></button>
-          </div>
+            <div className="ml-16 flex h-[71px] flex-1 max-w-[670px] items-center rounded-[10px] bg-[#E0E0E0] px-6">
 
-        </div>
+              <input type="text" placeholder="Пошук..." className="flex-1 bg-transparent text-[24px] text-[#231F2082] outline-none placeholder:text-[#231F2082]" />
+
+              <button className="shrink-0">
+                <Image src="/icons/lens.png" alt="lens" width={29} height={29} />
+              </button>
+
+            </div>
+
+
+
+
+            <div className="ml-auto flex shrink-0 items-center gap-[25px]">
+              <button><Image src="/icons/fav.png" alt="fav" width={75} height={60} /></button>
+              <button><Image src="/icons/prof.png" alt="prof" width={40} height={62} /></button>
+              <button><Image src="/icons/cart.png" alt="cart" width={64} height={63} /></button>
+            </div>
+
+          </div>
         </div>
 
 
