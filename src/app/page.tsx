@@ -37,7 +37,7 @@ export default function Home() {
 
   return (
     <main className="w-full bg-white text-[#231F20]">
-      <section className="mx-auto flex max-w-[1700px] gap-8 px-10 py-10">
+      <section id="store" className="mx-auto flex max-w-[1700px] gap-8 px-10 py-10">
         <div className="flex min-h-[420px] flex-1 bg-[#E0E0E0]">
           <div className="flex w-[52%] flex-col justify-center px-14">
             <p className="mb-5 text-[24px] font-medium text-[#00AAAD]">
@@ -90,7 +90,7 @@ export default function Home() {
         </aside>
       </section>
 
-      <section className="mx-auto max-w-[1700px] px-10 pb-12">
+      <section id="categories" className="mx-auto max-w-[1700px] px-10 pb-12">
         <div className="mb-7 flex items-end justify-between">
           <h2 className="text-[42px] font-bold">Популярные категории</h2>
           <button className="h-[51px] w-[210px] bg-[#E0E0E0] text-[22px]">
@@ -134,7 +134,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-[1700px] px-10 py-12">
+      <section id="recommended" className="mx-auto max-w-[1700px] px-10 py-12">
         <div className="mb-7 flex items-end justify-between">
           <h2 className="text-[42px] font-bold">Рекомендуем</h2>
           <button className="h-[51px] w-[181px] bg-[#E0E0E0] text-[22px]">
@@ -164,6 +164,31 @@ export default function Home() {
             </article>
           ))}
         </div>
+      </section>
+
+      <section id="blog" className="mx-auto max-w-[1700px] px-10 pb-12">
+        <div className="grid grid-cols-3 gap-8">
+          <div id="faq" className="bg-[#E0E0E0] p-8">
+            <p className="text-[28px] font-bold">Питання-відповіді</p>
+            <p className="mt-3 text-[20px] text-[#231F20B3]">
+              Допоможемо з оплатою, доставкою, поверненням та вибором товарів.
+            </p>
+          </div>
+          <div id="jobs" className="bg-[#E0E0E0] p-8">
+            <p className="text-[28px] font-bold">Робота в JYSK</p>
+            <p className="mt-3 text-[20px] text-[#231F20B3]">
+              Відкриті позиції для магазинів, складу та офісної команди.
+            </p>
+          </div>
+          <div className="bg-[#E0E0E0] p-8">
+            <p className="text-[28px] font-bold">Блог</p>
+            <p className="mt-3 text-[20px] text-[#231F20B3]">
+              Ідеї для дому, сезонні добірки та практичні поради.
+            </p>
+          </div>
+        </div>
+        <div id="favorites" className="h-0" />
+        <div id="cart" className="h-0" />
       </section>
     </main>
   );
