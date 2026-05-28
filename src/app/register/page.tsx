@@ -59,14 +59,13 @@ export default function RegisterPage() {
         {/* Left Side: JYSK Benefits Info Panel */}
         <div className="flex flex-1 flex-col justify-between bg-[#E0E0E0] p-12">
           <div>
-            <p className="text-[24px] font-medium text-[#00AAAD]">
-              Профіль покупця
-            </p>
+            <p className="text-[24px] font-medium text-[#00AAAD]">Профіль покупця</p>
             <h1 className="mt-5 max-w-[660px] text-[58px] leading-[1.05] font-bold">
               Створіть акаунт та отримайте переваги
             </h1>
             <p className="mt-7 max-w-[620px] text-[24px] leading-[1.35] text-[#231F20B3]">
-              Приєднуйтесь до JYSK, щоб зберігати список улюблених товарів, відслідковувати статус замовлень та отримувати персональні пропозиції.
+              Приєднуйтесь до JYSK, щоб зберігати список улюблених товарів, відслідковувати статус
+              замовлень та отримувати персональні пропозиції.
             </p>
           </div>
 
@@ -105,8 +104,8 @@ export default function RegisterPage() {
           {isSuccess && (
             <div className="mt-6 border-l-4 border-green-500 bg-green-50 p-4 text-green-700">
               <p className="font-semibold">Успішна реєстрація!</p>
-              <p className="text-[16px] mt-1">Дані успішно виведено у консоль розробника.</p>
-              <button 
+              <p className="mt-1 text-[16px]">Дані успішно виведено у консоль розробника.</p>
+              <button
                 onClick={() => setIsSuccess(false)}
                 className="mt-3 text-[16px] font-medium text-[#00AAAD] underline hover:text-[#008f91]"
               >
@@ -116,21 +115,21 @@ export default function RegisterPage() {
           )}
 
           {error && (
-            <div className="mt-6 border-l-4 border-red-500 bg-red-50 p-4 text-red-700 text-[16px]">
+            <div className="mt-6 border-l-4 border-red-500 bg-red-50 p-4 text-[16px] text-red-700">
               {error}
             </div>
           )}
 
           <form onSubmit={handleSubmit} className="mt-8 flex flex-col gap-6">
             <label className="flex flex-col gap-3 text-[20px] font-medium">
-              Ім'я та Прізвище
+              Ім&rsquo;я та Прізвище
               <input
                 type="text"
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
                 placeholder=""
-                className="h-[62px] bg-[#E0E0E0] px-5 text-[22px] font-normal outline-none transition-colors focus:bg-[#d6d6d6] focus:border-b-2 focus:border-[#00AAAD] placeholder:text-[#231F2082]"
+                className="h-[62px] bg-[#E0E0E0] px-5 text-[22px] font-normal transition-colors outline-none placeholder:text-[#231F2082] focus:border-b-2 focus:border-[#00AAAD] focus:bg-[#d6d6d6]"
                 required
               />
             </label>
@@ -143,7 +142,7 @@ export default function RegisterPage() {
                 value={formData.email}
                 onChange={handleChange}
                 placeholder=""
-                className="h-[62px] bg-[#E0E0E0] px-5 text-[22px] font-normal outline-none transition-colors focus:bg-[#d6d6d6] focus:border-b-2 focus:border-[#00AAAD] placeholder:text-[#231F2082]"
+                className="h-[62px] bg-[#E0E0E0] px-5 text-[22px] font-normal transition-colors outline-none placeholder:text-[#231F2082] focus:border-b-2 focus:border-[#00AAAD] focus:bg-[#d6d6d6]"
                 required
               />
             </label>
@@ -156,7 +155,7 @@ export default function RegisterPage() {
                 value={formData.phone}
                 onChange={handleChange}
                 placeholder=""
-                className="h-[62px] bg-[#E0E0E0] px-5 text-[22px] font-normal outline-none transition-colors focus:bg-[#d6d6d6] focus:border-b-2 focus:border-[#00AAAD] placeholder:text-[#231F2082]"
+                className="h-[62px] bg-[#E0E0E0] px-5 text-[22px] font-normal transition-colors outline-none placeholder:text-[#231F2082] focus:border-b-2 focus:border-[#00AAAD] focus:bg-[#d6d6d6]"
               />
             </label>
 
@@ -168,7 +167,7 @@ export default function RegisterPage() {
                 value={formData.password}
                 onChange={handleChange}
                 placeholder=""
-                className="h-[62px] bg-[#E0E0E0] px-5 text-[22px] font-normal outline-none transition-colors focus:bg-[#d6d6d6] focus:border-b-2 focus:border-[#00AAAD] placeholder:text-[#231F2082]"
+                className="h-[62px] bg-[#E0E0E0] px-5 text-[22px] font-normal transition-colors outline-none placeholder:text-[#231F2082] focus:border-b-2 focus:border-[#00AAAD] focus:bg-[#d6d6d6]"
                 required
               />
             </label>
@@ -181,22 +180,25 @@ export default function RegisterPage() {
                 value={formData.confirmPassword}
                 onChange={handleChange}
                 placeholder=""
-                className="h-[62px] bg-[#E0E0E0] px-5 text-[22px] font-normal outline-none transition-colors focus:bg-[#d6d6d6] focus:border-b-2 focus:border-[#00AAAD] placeholder:text-[#231F2082]"
+                className="h-[62px] bg-[#E0E0E0] px-5 text-[22px] font-normal transition-colors outline-none placeholder:text-[#231F2082] focus:border-b-2 focus:border-[#00AAAD] focus:bg-[#d6d6d6]"
                 required
               />
             </label>
 
-            <div className="flex items-start text-[18px] gap-3 mt-2">
-              <input 
-                type="checkbox" 
+            <div className="mt-2 flex items-start gap-3 text-[18px]">
+              <input
+                type="checkbox"
                 id="agreeToTerms"
                 name="agreeToTerms"
                 checked={formData.agreeToTerms}
                 onChange={handleChange}
-                className="h-5 w-5 mt-1 cursor-pointer" 
+                className="mt-1 h-5 w-5 cursor-pointer"
                 required
               />
-              <label htmlFor="agreeToTerms" className="cursor-pointer select-none leading-snug text-[#231F20B3]">
+              <label
+                htmlFor="agreeToTerms"
+                className="cursor-pointer leading-snug text-[#231F20B3] select-none"
+              >
                 Я погоджуюся з політикою конфіденційності та правилами сервісу JYSK
               </label>
             </div>
@@ -210,9 +212,7 @@ export default function RegisterPage() {
           </form>
 
           <div className="mt-8 border-t border-[#00000030] pt-7">
-            <p className="text-[20px] text-[#231F20B3]">
-              Вже маєте акаунт?
-            </p>
+            <p className="text-[20px] text-[#231F20B3]">Вже маєте акаунт?</p>
             <Link
               href="/login"
               className="mt-4 flex h-[56px] items-center justify-center bg-[#E0E0E0] text-[22px] font-medium transition-colors hover:bg-[#d6d6d6]"
