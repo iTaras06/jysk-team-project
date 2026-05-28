@@ -1,0 +1,78 @@
+[
+  {
+    "id": "1",
+    "slug": "kovdra-fjord",
+    "title": "Ковдра Fjord",
+    "price": 1299,
+    "oldPrice": 1855,
+    "categorySlug": "bedroom",
+    "label": "-30%",
+    "color": "bg-[#CFE8E8]",
+    "isRecommended": true
+  },
+  {
+    "id": "2",
+    "slug": "stilets-nord",
+    "title": "Стілець Nord",
+    "price": 899,
+    "categorySlug": "living-room",
+    "label": "Хіт",
+    "color": "bg-[#E0E0E0]",
+    "isRecommended": true
+  },
+  {
+    "id": "3",
+    "slug": "polytsia-basic",
+    "title": "Полиця Basic",
+    "price": 549,
+    "categorySlug": "living-room",
+    "label": "Новинка",
+    "color": "bg-[#D9EEE5]",
+    "isRecommended": true
+  },
+  {
+    "id": "4",
+    "slug": "lampa-hygge",
+    "title": "Лампа Hygge",
+    "price": 749,
+    "oldPrice": 881,
+    "categorySlug": "decor",
+    "label": "-15%",
+    "color": "bg-[#F0E7D8]",
+    "isRecommended": true
+  },
+  {
+    "id": "5",
+    "slug": "podushka-soft",
+    "title": "Подушка Soft",
+    "price": 349,
+    "categorySlug": "bedroom",
+    "color": "bg-[#E8E0F0]"
+  },
+  {
+    "id": "6",
+    "slug": "stil-edge",
+    "title": "Стіл Edge",
+    "price": 3499,
+    "categorySlug": "office",
+    "label": "Хіт",
+    "color": "bg-[#E0DCC9]"
+  },
+  {
+    "id": "7",
+    "slug": "rushnyk-cotton",
+    "title": "Рушник Cotton",
+    "price": 199,
+    "categorySlug": "bathroom",
+    "color": "bg-[#DCEBF0]"
+  },
+  {
+    "id": "8",
+    "slug": "kashpo-garden",
+    "title": "Кашпо Garden",
+    "price": 459,
+    "categorySlug": "garden",
+    "label": "Новинка",
+    "color": "bg-[#D5E6D5]"
+  }
+]

@@ -1,0 +1,8 @@
+[
+  { "id": "1", "slug": "bedroom", "name": "Спальня" },
+  { "id": "2", "slug": "living-room", "name": "Вітальня" },
+  { "id": "3", "slug": "bathroom", "name": "Ванна" },
+  { "id": "4", "slug": "office", "name": "Офіс" },
+  { "id": "5", "slug": "garden", "name": "Сад" },
+  { "id": "6", "slug": "decor", "name": "Декор" }
+]

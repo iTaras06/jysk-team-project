@@ -20,10 +20,7 @@ export default function Header() {
               <Image src="/icons/logo.png" alt="JYSK" width={110} height={71} />
             </Link>
 
-            <Link
-              href="/#categories"
-              className="ml-10 flex items-center gap-14"
-            >
+            <Link href="/#categories" className="ml-10 flex items-center gap-14">
               <div className="flex h-[30px] w-[56px] flex-col justify-between">
                 <span className="h-[4px] w-full bg-black" />
                 <span className="h-[4px] w-full bg-black" />
@@ -44,11 +41,7 @@ export default function Header() {
                 className="flex-1 bg-transparent text-[24px] text-[#231F2082] outline-none placeholder:text-[#231F2082]"
               />
 
-              <button
-                type="submit"
-                className="shrink-0"
-                aria-label="Знайти товари"
-              >
+              <button type="submit" className="shrink-0" aria-label="Знайти товари">
                 <Image src="/icons/lens.png" alt="" width={29} height={29} />
               </button>
             </form>
