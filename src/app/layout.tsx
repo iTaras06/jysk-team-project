@@ -7,6 +7,7 @@ import "./globals.css";
 
 import Header from "@/components/layout/Header";
 import Prefooter from "@/components/layout/Prefooter";
+import Footer from "@/components/layout/Footer";
 
 
 const raleway = Raleway({
@@ -31,6 +32,7 @@ export default function RootLayout({
         
         {children}
         <Prefooter />
+        <Footer />
       </body>
     </html>
   );
