@@ -1,99 +1,156 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
+import Menu from "@/components/layout/Menu";
+import Stores from "@/components/layout/Stores";
 
 const navLinks = [
-  { href: "/#blog", label: "Блог", width: "w-[138px]" },
-  { href: "/#recommended", label: "Магазини", width: "w-[181px]" },
-  { href: "/#faq", label: "Питання-відповідь", width: "w-[260px]" },
-  { href: "/#jobs", label: "Робота", width: "w-[181px]" },
+  { href: "/#blog", label: "Блог", width: "w-[152px] max-[768px]:w-[111px]" },
+  { href: "/#recommended", label: "Магазини", width: "w-[200px] max-[768px]:w-[145px]" },
+  { href: "/#faq", label: "Питання-відповідь", width: "w-[286px] max-[768px]:w-[208px]" },
+  { href: "/#jobs", label: "Робота", width: "w-[200px] max-[768px]:w-[145px]" },
 ];
 
 export default function Header() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isStoresOpen, setIsStoresOpen] = useState(false);
   return (
-    <header className="w-full h-[300px] text-[#231F20]" >
-      <div className="h-[59px] w-full bg-[#00AAAD]" />
+    <>
+    <header className="relative w-full h-[300px] text-[#231F20] border-b border-black/50 shadow-[0px_4px_10px_rgba(0,0,0,0.25)] max-[768px]:h-auto">
 
-      <div className="h-[240px] w-full bg-white">
-        <div className="w-full border-b border-[#00000080]">
-          <div className="mx-[5%] flex h-[150px]  items-center px-10">
+      <div className="h-[59px] w-full bg-[#00AAAD] max-[768px]:h-[35px]" />
+      <div className="h-[240px] w-full bg-white max-[768px]:h-auto">
+        <div className="w-full border-b border-black/50 max-[768px]:border-none">
+          <div className="mx-[6%] flex h-[150px]  items-center px-10 
+            max-[768px]:h-[96px]
+            max-[768px]:px-[10px]
+            max-[768px]:justify-between
+            max-[640px]:h-[96px]">
+            
             <Link href="/" aria-label="На головну">
-              <Image src="/icons/logo.png" alt="JYSK" width={110} height={71} />
+              <Image src="/icons/logo.png"  alt="HYGGY" width={110} height={71} className="max-[768px]:w-[74px] max-[768px]:h-[48px]"/>
             </Link>
 
-            <Link 
-              href="/#categories"
-              className="ml-10 flex items-center gap-14">
-                
-                <div className="flex h-[30px] w-[56px] flex-col justify-between">
-                    <span className="h-[4px] w-full bg-black"/>
-                    <span className="h-[4px] w-full bg-black"/>
-                    <span className="h-[4px] w-full bg-black"/>
-                </div>
-                <span className="text-[30px] font-medium">Меню</span>
-            </Link>
+            <button type="button" onClick={() => setIsMenuOpen(true)}
+              className="ml-10 flex items-center gap-16
+              max-[768px]:ml-[-120px]
+              max-[768px]:gap-[30px]
+              max-[640px]:gap-[6px]">
+              
+              <div className="flex h-[30px] w-[60px] flex-col justify-between max-[768px]:h-[25px] max-[768px]:w-[42px]">
+                <span className="h-[3px] w-full bg-black" />
+                <span className="h-[3px] w-full bg-black" />
+                <span className="h-[3px] w-full bg-black" />
+              </div>
+
+              <span className="text-[30px] font-medium max-[768px]:text-[24px] max-[640px]:hidden">Меню
+              </span>
+            </button>
 
             <form
               action="/"
-              className="ml-16 flex h-[71px] max-w-[670px] flex-1 items-center rounded-[10px] bg-[#E0E0E0] px-6"
-              role="search"
-            >
+              className="ml-30 flex h-[71px] max-w-[900px] flex-1 items-center rounded-[10px] bg-[#E0E0E0] px-6
+              max-[768px]:absolute
+              max-[768px]:top-[136px]
+              max-[768px]:left-[30px]
+              max-[768px]:right-[30px]
+              max-[768px]:ml-0
+              max-[768px]:max-w-none
+              max-[768px]:h-[45px]
+              max-[640px]:top-[140px]"
+              role="search">
 
+              <input type="search" name="search" placeholder="Пошук..."
+                className="flex-1 bg-transparent text-[24px] text-[#231F2082] outline-none placeholder:text-[#231F2082] max-[768px]:text-[18px]"/>
 
-              <input
-                type="search"
-                name="search"
-                placeholder="Пошук..."
-                className="flex-1 bg-transparent text-[24px] text-[#231F2082] outline-none placeholder:text-[#231F2082]"
-              />
-
-              <button
-                type="submit"
-                className="shrink-0"
-                aria-label="Знайти товари"
-              >
-                <Image src="/icons/lens.png" alt="" width={29} height={29} />
+              <button type="submit" className="shrink-0" aria-label="Знайти товари">
+                <Image src="/icons/lens.png" alt="" width={29} height={29} className="max-[768px]:w-[22px] max-[768px]:h-[22px]"/>
               </button>
             </form>
 
-{/* изменеие*/}
-            <div className="ml-auto flex shrink-0 items-center gap-25">    
+            <div className="hidden
+              max-[768px]:block
+              max-[768px]:absolute
+              max-[768px]:left-0
+              max-[768px]:right-0
+              max-[768px]:top-[220px]
+              max-[768px]:h-[1px]
+              max-[768px]:bg-black/40
+              max-[640px]:hidden"/>
+
+            <div className="ml-auto flex shrink-0 items-center gap-30
+            max-[768px]:ml-0
+            max-[768px]:gap-[36px]
+            max-[640px]:gap-[30px]">    
               <Link href="/#favorites" aria-label="Обране">
-                <Image src="/icons/fav.png" alt="" width={75} height={60} />
+                <Image src="/icons/fav.png" alt="" width={75} height={60} 
+                className="max-[768px]:w-[50px] max-[768px]:h-[40px] max-[640px]:hidden"/>
+                <Image src="/icons/fav2.png" alt="" width={36} height={32} className="hidden
+                  max-[640px]:block
+                  max-[640px]:w-[36px]
+                  max-[640px]:h-[32px]"/>
               </Link>
+
               <Link href="/login" aria-label="Увійти в профіль">
-                <Image src="/icons/prof.png" alt="" width={40} height={62} />
+                <Image src="/icons/prof.png" alt="" width={40} height={62} 
+                className="max-[768px]:w-[32px] max-[768px]:h-[50px] max-[640px]:hidden"/>
+                <Image src="/icons/prof2.png" alt="" width={28} height={38} 
+                className="hidden max-[640px]:block max-[640px]:w-[28px] max-[640px]:h-[38px]"/>
               </Link>
+
               <Link href="/#cart" aria-label="Кошик">
-                <Image src="/icons/cart.png" alt="" width={64} height={63} />
+                <Image src="/icons/cart.png" alt="" width={64} height={63} 
+                className="max-[768px]:w-[50px] max-[768px]:h-[49px] max-[640px]:hidden"/>
+                <Image src="/icons/cart2.png" alt="" width={41} height={39} className="hidden
+                  max-[640px]:block
+                  max-[640px]:w-[41px]
+                  max-[640px]:h-[39px]"/>
               </Link>
             </div>
           </div>
         </div>
 
-{/* изменеие*/}        
-        <div className="mx-auto flex h-[89px] max-w-[1920px] items-center px-10"> 
-          <Link href="/#store" className="flex items-center gap-4 ml-[4%]">
-            <Image src="/icons/stor.png" alt="" width={23} height={29} />
-            <span className="text-[24px]">HYGGY Київ ТЦ Променада</span> 
-            <Image src="/icons/check.png" alt="" width={18} height={18} />
-          </Link>
 
+        <div className="flex min-h-[89px] mx-[4%] items-center justify-between px-24
+          max-[768px]:mt-[70px]
+          max-[768px]:h-[108px]
+          max-[768px]:flex-col
+          max-[768px]:items-center
+          max-[768px]:px-0
+          max-[640px]:h-[90px]
+          max-[640px]:mt-[0px]"> 
 
+          <button type="button" onClick={() => setIsStoresOpen(true)}
+            className="flex items-center gap-4 whitespace-nowrap shrink-0 max-[768px]:hidden">
+            <Image src="/icons/stor.png" alt="" width={23} height={29} className="shrink-0"/>
+            <span className="text-[24px] whitespace-nowrap">HYGGY Київ ТЦ Променада</span> 
+            <Image src="/icons/check.png" alt="" width={18} height={18} className="shrink-0"/>
+          </button>
 
-{/* изменеие*/}
-          <nav className="ml-[450px] flex items-center gap-5" aria-label="Головна навігація">
+          <nav className="flex items-center gap-8
+            max-[768px]:ml-0
+            max-[768px]:mt-[40px]
+            max-[768px]:mb-[40px]
+            max-[768px]:gap-[16px]
+            max-[640px]:hidden" 
+            aria-label="Головна навігація">
+
             {navLinks.map((link) => (
               <Link
                 href={link.href}
-                className={`flex h-[51px] ${link.width} items-center justify-center bg-[#E0E0E0] text-[22px] transition hover:bg-[#D3D3D3]`}
-                key={link.href}
-              >
-                {link.label}
+                  className={`flex h-[51px] ${link.width} items-center justify-center bg-[#E0E0E0] text-[22px] transition hover:bg-[#D3D3D3] max-[768px]:h-[45px] max-[768px]:text-[18px]`}
+                key={link.href}>{link.label}
               </Link>
             ))}
           </nav>
         </div>
       </div>
+
     </header>
+    <Menu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
+
+    <Stores isOpen={isStoresOpen} onClose={() => setIsStoresOpen(false)} />
+    </>
   );
 }
