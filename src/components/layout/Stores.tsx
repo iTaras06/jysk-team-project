@@ -3,7 +3,7 @@
 import Image from "next/image";
 import ButtonStores from "./ButtonStores";
 
-interface StoresProps {isOpen: boolean; onClose: () => void;}
+interface Props {isOpen: boolean; onClose: () => void;}
 
 const stores = [
   {
@@ -38,10 +38,8 @@ const stores = [
   },
 ];
 
-export default function Stores({
-  isOpen,
-  onClose,
-}: StoresProps) {
+export default function Stores({isOpen, onClose,}: Props) 
+{
   if (!isOpen) return null;
 
   return (
@@ -52,7 +50,6 @@ export default function Stores({
         <h2 className="text-center text-[24px] font-semibold">
           HYGGY Київ ТЦ Променада
         </h2>
-
         <button onClick={onClose}
           className="absolute right-[40px] top-[20px] text-[55px] leading-none transition hover:opacity-60">×
         </button>
@@ -63,8 +60,7 @@ export default function Stores({
       <div className="px-[40px] pt-[40px]">
         <div className="flex h-[68px] items-center rounded-[12px] bg-[#E0E0E0] px-[35px]">
           <input type="search" placeholder="Пошук..."
-            className="flex-1 bg-transparent text-[24px] outline-none placeholder:text-black/40"/>
-
+            className="flex-1 bg-transparent text-[24px] outline-none placeholder:text-black/40"/>          
           <Image src="/icons/lens.png" alt="" width={29} height={29}/>
         </div>
       </div>
@@ -84,7 +80,6 @@ export default function Stores({
                 <div className="text-[19px]">
                   <span className="font-semibold text-[#76C043]">{store.status}</span>{" "}{store.closeTime}
                 </div>
-
                 <button type="button"
                   className="text-[20px] max-[640px]:text-[18px] font-semibold text-[#00AAAD] underline">Робочі години
                 </button>

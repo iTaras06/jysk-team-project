@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-interface MenuProps {isOpen: boolean; onClose: () => void;}
+interface Props {isOpen: boolean; onClose: () => void;}
 
 const menuItems = [
   { title: "Вітальня", href: "/living-room" },
@@ -14,7 +14,7 @@ const menuItems = [
   { title: "Двір", href: "/yard" },
 ];
 
-export default function Menu({ isOpen, onClose }: MenuProps) {
+export default function Menu({ isOpen, onClose }: Props) {
   if (!isOpen) return null;
 
   return (
@@ -32,7 +32,7 @@ export default function Menu({ isOpen, onClose }: MenuProps) {
         </button>
       </div>
 
-      <div className="mt-[40px] h-[1px] w-full bg-black/30" />
+      <div className="mt-[40px] h-[1px] w-full bg-black/30"/>
 
       <nav className="mt-[40px]">
         <ul className="flex flex-col gap-[40px]">
