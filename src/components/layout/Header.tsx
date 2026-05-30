@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -9,6 +10,8 @@ const navLinks = [
 ];
 
 export default function Header() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isStoresOpen, setIsStoresOpen] = useState(false);
   return (
     <header className="h-[300px] w-full text-[#231F20]">
       <div className="h-[59px] w-full bg-[#00AAAD]" />
@@ -81,5 +84,9 @@ export default function Header() {
         </div>
       </div>
     </header>
+    <Menu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
+
+    <Stores isOpen={isStoresOpen} onClose={() => setIsStoresOpen(false)} />
+    </>
   );
 }
