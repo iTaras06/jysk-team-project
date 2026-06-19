@@ -6,10 +6,10 @@ import Menu from "@/components/layout/Menu";
 import Stores from "@/components/layout/Stores";
 
 const navLinks = [
-  { href: "/#blog", label: "Блог", width: "w-[152px] max-[768px]:w-[111px]" },
-  { href: "/#recommended", label: "Магазини", width: "w-[200px] max-[768px]:w-[145px]" },
-  { href: "/#faq", label: "Питання-відповідь", width: "w-[286px] max-[768px]:w-[208px]" },
-  { href: "/#jobs", label: "Робота", width: "w-[200px] max-[768px]:w-[145px]" },
+  { href: "/blog", label: "Блог", width: "w-[152px] max-[768px]:w-[111px]" },
+  { href: "/shops", label: "Магазини", width: "w-[200px] max-[768px]:w-[145px]" },
+  { href: "/questions", label: "Питання-відповідь", width: "w-[286px] max-[768px]:w-[208px]" },
+  { href: "/work", label: "Робота", width: "w-[200px] max-[768px]:w-[145px]" },
 ];
 
 export default function Header() {
@@ -50,7 +50,7 @@ export default function Header() {
 
             <form
               action="/"
-              className="ml-30 flex h-[71px] max-w-[900px] flex-1 items-center rounded-[10px] bg-[#E0E0E0] px-6
+              className="ml-30 flex h-[71px] max-w-[700px] flex-1 items-center rounded-[10px] bg-[#E0E0E0] px-6
               max-[768px]:absolute
               max-[768px]:top-[136px]
               max-[768px]:left-[30px]
@@ -79,10 +79,10 @@ export default function Header() {
               max-[768px]:bg-black/40
               max-[640px]:hidden"/>
 
-            <div className="ml-auto flex shrink-0 items-center gap-30
+            <div className="ml-60 flex shrink-0 items-center gap-22
             max-[768px]:ml-0
-            max-[768px]:gap-[36px]
-            max-[640px]:gap-[30px]">    
+            max-[768px]:gap-[32px]
+            max-[640px]:gap-[26px]">    
               <Link href="/#favorites" aria-label="Обране">
                 <Image src="/icons/fav.png" alt="" width={75} height={60} 
                 className="max-[768px]:w-[50px] max-[768px]:h-[40px] max-[640px]:hidden"/>
