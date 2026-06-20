@@ -6,10 +6,10 @@ import Menu from "@/components/layout/Menu";
 import Stores from "@/components/layout/Stores";
 
 const navLinks = [
-  { href: "/#blog", label: "Блог", width: "w-[125px] max-[768px]:w-[111px]" },
-  { href: "/#recommended", label: "Магазини", width: "w-[165px] max-[768px]:w-[145px]" },
-  { href: "/#faq", label: "Питання-відповідь", width: "w-[235px] max-[768px]:w-[208px]" },
-  { href: "/#jobs", label: "Робота", width: "w-[165px] max-[768px]:w-[145px]" },
+  { href: "/blog", label: "Блог", width: "w-[125px] max-[768px]:w-[111px]" },
+  { href: "/shops", label: "Магазини", width: "w-[165px] max-[768px]:w-[145px]" },
+  { href: "/questions", label: "Питання-відповідь", width: "w-[235px] max-[768px]:w-[208px]" },
+  { href: "/work", label: "Робота", width: "w-[165px] max-[768px]:w-[145px]" },
 ];
 
 export default function Header() {
