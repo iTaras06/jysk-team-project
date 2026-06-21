@@ -8,6 +8,8 @@
     "categorySlug": "bedroom",
     "label": "-30%",
     "color": "bg-[#CFE8E8]",
+    "image": "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=800&q=80&auto=format&fit=crop",
+    "description": "М'яка ковдра в скандинавському стилі. Приємний наповнювач тримає тепло й добре пропускає повітря — комфортно у будь-яку пору року.",
     "isRecommended": true
   },
   {
@@ -18,6 +20,8 @@
     "categorySlug": "living-room",
     "label": "Хіт",
     "color": "bg-[#E0E0E0]",
+    "image": "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=800&q=80&auto=format&fit=crop",
+    "description": "Лаконічний стілець із міцним каркасом і зручним сидінням. Підходить для кухні, вітальні чи робочого куточка.",
     "isRecommended": true
   },
   {
@@ -28,6 +32,8 @@
     "categorySlug": "living-room",
     "label": "Новинка",
     "color": "bg-[#D9EEE5]",
+    "image": "https://images.unsplash.com/photo-1594620302200-9a762244a156?w=800&q=80&auto=format&fit=crop",
+    "description": "Проста настінна полиця для книг і декору. Легко монтується та витримує щоденне навантаження.",
     "isRecommended": true
   },
   {
@@ -39,6 +45,8 @@
     "categorySlug": "decor",
     "label": "-15%",
     "color": "bg-[#F0E7D8]",
+    "image": "https://images.unsplash.com/photo-1517991104123-1d56a6e81ed9?w=800&q=80&auto=format&fit=crop",
+    "description": "Настільна лампа з теплим м'яким світлом. Створює затишну атмосферу для читання та відпочинку.",
     "isRecommended": true
   },
   {
@@ -47,7 +55,9 @@
     "title": "Подушка Soft",
     "price": 349,
     "categorySlug": "bedroom",
-    "color": "bg-[#E8E0F0]"
+    "color": "bg-[#E8E0F0]",
+    "image": "https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?w=800&q=80&auto=format&fit=crop",
+    "description": "Подушка середньої жорсткості з дихаючим чохлом. Добре тримає форму та підтримує шию під час сну."
   },
   {
     "id": "6",
@@ -56,7 +66,9 @@
     "price": 3499,
     "categorySlug": "office",
     "label": "Хіт",
-    "color": "bg-[#E0DCC9]"
+    "color": "bg-[#E0DCC9]",
+    "image": "https://images.unsplash.com/photo-1538688525198-9b88f6f53126?w=800&q=80&auto=format&fit=crop",
+    "description": "Просторий робочий стіл зі стійкою стільницею. Достатньо місця для ноутбука, документів і дрібниць."
   },
   {
     "id": "7",
@@ -64,7 +76,9 @@
     "title": "Рушник Cotton",
     "price": 199,
     "categorySlug": "bathroom",
-    "color": "bg-[#DCEBF0]"
+    "color": "bg-[#DCEBF0]",
+    "image": "https://images.unsplash.com/photo-1631889993959-41b4e9c6e3c5?w=800&q=80&auto=format&fit=crop",
+    "description": "М'який бавовняний рушник, що добре вбирає вологу та залишається приємним на дотик після багатьох прань."
   },
   {
     "id": "8",
@@ -73,6 +87,8 @@
     "price": 459,
     "categorySlug": "garden",
     "label": "Новинка",
-    "color": "bg-[#D5E6D5]"
+    "color": "bg-[#D5E6D5]",
+    "image": "https://images.unsplash.com/photo-1485955900006-10f4d324d411?w=800&q=80&auto=format&fit=crop",
+    "description": "Кашпо для кімнатних і садових рослин з дренажем. Стійке до вологи та підходить для вулиці."
   }
 ]

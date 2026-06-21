@@ -7,6 +7,7 @@ export interface Product {
   categorySlug: string;
   label?: string;
   color?: string;
+  image?: string;
   description?: string;
   isRecommended?: boolean;
 }

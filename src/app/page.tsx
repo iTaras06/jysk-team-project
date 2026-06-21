@@ -1,5 +1,6 @@
+import Link from "next/link";
+import ProductCard from "@/components/ui/ProductCard";
 import { getCategories, getRecommendedProducts } from "@/lib/api";
-import { formatPrice } from "@/lib/format";
 
 export default async function Home() {
   const [categories, products] = await Promise.all([
@@ -9,22 +10,22 @@ export default async function Home() {
 
   return (
     <main className="w-full bg-white text-[#231F20]">
-      <section id="store" className="mx-auto flex max-w-[1408px] gap-7 px-9 py-9">
-        <div className="flex min-h-[352px] flex-1 bg-[#E0E0E0]">
-          <div className="flex w-[52%] flex-col justify-center px-11">
+      <section id="store" className="mx-auto flex max-w-[1408px] gap-7 px-9 py-9 max-[900px]:flex-col max-[640px]:px-5">
+        <div className="flex min-h-[352px] flex-1 bg-[#E0E0E0] max-[640px]:flex-col">
+          <div className="flex w-[52%] flex-col justify-center px-11 max-[900px]:w-[55%] max-[640px]:w-full max-[640px]:px-7 max-[640px]:py-8">
             <p className="mb-4 text-[20px] font-medium text-[#00AAAD]">Знижки до 50%</p>
-            <h1 className="max-w-[506px] text-[53px] leading-[1.04] font-bold">
+            <h1 className="max-w-[506px] text-[53px] leading-[1.04] font-bold max-[640px]:text-[36px]">
               Оновіть дім до літа
             </h1>
-            <p className="mt-6 max-w-[462px] text-[21px] leading-[1.35] text-[#231F20B3]">
+            <p className="mt-6 max-w-[462px] text-[21px] leading-[1.35] text-[#231F20B3] max-[640px]:text-[18px]">
               Меблі, текстиль і декор у спокійному скандинавському стилі для кожної кімнати.
             </p>
-            <button className="mt-7 h-[51px] w-[189px] bg-[#00AAAD] text-[20px] font-medium text-white">
+            <button className="mt-7 h-[51px] w-[189px] bg-[#00AAAD] text-[20px] font-medium text-white transition hover:bg-[#009396]">
               Дивитися акції
             </button>
           </div>
 
-          <div className="flex flex-1 items-center justify-center px-7">
+          <div className="flex flex-1 items-center justify-center px-7 max-[640px]:py-8">
             <div className="relative h-[255px] w-full max-w-[429px]">
               <div className="absolute bottom-0 left-0 h-[96px] w-full bg-white" />
               <div className="absolute bottom-[81px] left-[35px] h-[120px] w-[174px] bg-[#00AAAD]" />
@@ -36,7 +37,7 @@ export default async function Home() {
           </div>
         </div>
 
-        <aside className="flex w-[321px] flex-col gap-7">
+        <aside className="flex w-[321px] flex-col gap-7 max-[900px]:w-full">
           <div className="flex flex-1 flex-col justify-between bg-[#00AAAD] p-7 text-white">
             <div>
               <p className="text-[20px] font-medium">Товар тижня</p>
@@ -59,24 +60,30 @@ export default async function Home() {
       <section id="categories" className="mx-auto max-w-[1408px] px-9 pb-11">
         <div className="mb-6 flex items-end justify-between">
           <h2 className="text-[34px] font-bold">Популярні категорії</h2>
-          <button className="h-[42px] w-[174px] bg-[#E0E0E0] text-[18px]">Усі категорії</button>
+          <Link
+            href="/catalog"
+            className="flex h-[42px] w-[174px] items-center justify-center bg-[#E0E0E0] text-[18px] transition hover:bg-[#D3D3D3]"
+          >
+            Усі категорії
+          </Link>
         </div>
 
-        <div className="grid grid-cols-6 gap-6">
+        <div className="grid grid-cols-6 gap-6 max-[1024px]:grid-cols-3 max-[640px]:grid-cols-2">
           {categories.map((category) => (
-            <button
+            <Link
+              href={`/catalog/${category.slug}`}
               className="flex h-[123px] flex-col justify-between bg-[#E0E0E0] p-6 text-left transition hover:bg-[#D3D3D3]"
               key={category.id}
             >
               <span className="h-[35px] w-[35px] bg-[#00AAAD]" />
               <span className="text-[20px] font-medium">{category.name}</span>
-            </button>
+            </Link>
           ))}
         </div>
       </section>
 
       <section className="w-full border-y border-[#00000030] bg-[#F7F7F7]">
-        <div className="mx-auto grid max-w-[1408px] grid-cols-3 gap-7 px-9 py-9">
+        <div className="mx-auto grid max-w-[1408px] grid-cols-3 gap-7 px-9 py-9 max-[768px]:grid-cols-1">
           <div className="bg-white p-7">
             <p className="text-[23px] font-bold">Швидка доставка</p>
             <p className="mt-2 text-[17px] text-[#231F20B3]">
@@ -101,44 +108,23 @@ export default async function Home() {
       <section id="recommended" className="mx-auto max-w-[1408px] px-9 py-11">
         <div className="mb-6 flex items-end justify-between">
           <h2 className="text-[34px] font-bold">Рекомендуємо</h2>
-          <button className="h-[42px] w-[150px] bg-[#E0E0E0] text-[18px]">Магазин</button>
+          <Link
+            href="/catalog"
+            className="flex h-[42px] w-[150px] items-center justify-center bg-[#E0E0E0] text-[18px] transition hover:bg-[#D3D3D3]"
+          >
+            Магазин
+          </Link>
         </div>
 
-        <div className="grid grid-cols-4 gap-7">
+        <div className="grid grid-cols-4 gap-7 max-[1024px]:grid-cols-3 max-[768px]:grid-cols-2 max-[480px]:grid-cols-1">
           {products.map((product) => (
-            <article className="border border-[#00000030] bg-white" key={product.id}>
-              <div className={`relative h-[222px] ${product.color ?? "bg-[#E0E0E0]"}`}>
-                {product.label && (
-                  <span className="absolute top-4 left-4 bg-[#00AAAD] px-4 py-1.5 text-[17px] font-medium text-white">
-                    {product.label}
-                  </span>
-                )}
-                <div className="absolute right-6 bottom-6 left-6 h-[59px] bg-white" />
-                <div className="absolute right-12 bottom-[66px] left-12 h-[76px] bg-[#231F20]" />
-              </div>
-              <div className="p-6">
-                <h3 className="text-[22px] font-medium">{product.title}</h3>
-                <div className="mt-4 flex items-center justify-between">
-                  <div className="flex flex-col">
-                    <p className="text-[23px] font-bold">{formatPrice(product.price)}</p>
-                    {product.oldPrice && (
-                      <p className="text-[15px] text-[#231F2080] line-through">
-                        {formatPrice(product.oldPrice)}
-                      </p>
-                    )}
-                  </div>
-                  <button className="h-[40px] w-[99px] bg-[#00AAAD] text-[17px] font-medium text-white">
-                    У кошик
-                  </button>
-                </div>
-              </div>
-            </article>
+            <ProductCard key={product.id} product={product} />
           ))}
         </div>
       </section>
 
       <section id="blog" className="mx-auto max-w-[1408px] px-9 pb-11">
-        <div className="grid grid-cols-3 gap-7">
+        <div className="grid grid-cols-3 gap-7 max-[768px]:grid-cols-1">
           <div id="faq" className="bg-[#E0E0E0] p-7">
             <p className="text-[23px] font-bold">Питання-відповіді</p>
             <p className="mt-2 text-[17px] text-[#231F20B3]">

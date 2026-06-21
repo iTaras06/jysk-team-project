@@ -4,8 +4,13 @@ import Link from "next/link";
 import { useState } from "react";
 import Menu from "@/components/layout/Menu";
 import Stores from "@/components/layout/Stores";
+import { useAuthStore } from "@/features/auth/store";
+import { selectCartCount, useCartStore } from "@/features/cart/store";
+import { useFavoritesStore } from "@/features/favorites/store";
+import { useHydrated } from "@/lib/useHydrated";
 
 const navLinks = [
+  { href: "/catalog", label: "Каталог", width: "w-[145px] max-[768px]:w-[128px]" },
   { href: "/blog", label: "Блог", width: "w-[125px] max-[768px]:w-[111px]" },
   { href: "/shops", label: "Магазини", width: "w-[165px] max-[768px]:w-[145px]" },
   { href: "/questions", label: "Питання-відповідь", width: "w-[235px] max-[768px]:w-[208px]" },
@@ -15,6 +20,11 @@ const navLinks = [
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isStoresOpen, setIsStoresOpen] = useState(false);
+  const hydrated = useHydrated();
+  const cartCount = useCartStore(selectCartCount);
+  const favCount = useFavoritesStore((s) => s.ids.length);
+  const user = useAuthStore((s) => s.currentUser);
+  const profileHref = hydrated && user ? "/profile" : "/login";
   return (
     <>
     <header className="relative w-full h-[249px] text-[#231F20] border-b border-black/50 shadow-[0px_4px_10px_rgba(0,0,0,0.25)] max-[768px]:h-auto">
@@ -49,7 +59,7 @@ export default function Header() {
             </button>
 
             <form
-              action="/"
+              action="/search"
               className="ml-[105px] flex h-[58px] max-w-[748px] flex-1 items-center rounded-[10px] bg-[#E0E0E0] px-6
               max-[768px]:absolute
               max-[768px]:top-[136px]
@@ -61,7 +71,7 @@ export default function Header() {
               max-[640px]:top-[140px]"
               role="search">
 
-              <input type="search" name="search" placeholder="Пошук..."
+              <input type="search" name="q" placeholder="Пошук..."
                 className="flex-1 bg-transparent text-[20px] text-[#231F2082] outline-none placeholder:text-[#231F2082] max-[768px]:text-[18px]"/>
 
               <button type="submit" className="shrink-0" aria-label="Знайти товари">
@@ -83,29 +93,42 @@ export default function Header() {
             max-[768px]:ml-0
             max-[768px]:gap-[36px]
             max-[640px]:gap-[30px]">
-              <Link href="/#favorites" aria-label="Обране">
+              <Link href="/favorites" aria-label="Обране" className="relative">
                 <Image src="/icons/fav.png" alt="" width={62} height={50}
                 className="max-[768px]:w-[50px] max-[768px]:h-[40px] max-[640px]:hidden"/>
                 <Image src="/icons/fav2.png" alt="" width={36} height={32} className="hidden
                   max-[640px]:block
                   max-[640px]:w-[36px]
                   max-[640px]:h-[32px]"/>
+                {hydrated && favCount > 0 && (
+                  <span className="absolute -top-2 -right-2 flex h-[22px] min-w-[22px] items-center justify-center rounded-full bg-[#E4002B] px-1 text-[13px] font-bold text-white">
+                    {favCount}
+                  </span>
+                )}
               </Link>
 
-              <Link href="/login" aria-label="Увійти в профіль">
+              <Link
+                href={profileHref}
+                aria-label={hydrated && user ? "Мій профіль" : "Увійти в профіль"}
+              >
                 <Image src="/icons/prof.png" alt="" width={33} height={52}
                 className="max-[768px]:w-[32px] max-[768px]:h-[50px] max-[640px]:hidden"/>
-                <Image src="/icons/prof2.png" alt="" width={28} height={38} 
+                <Image src="/icons/prof2.png" alt="" width={28} height={38}
                 className="hidden max-[640px]:block max-[640px]:w-[28px] max-[640px]:h-[38px]"/>
               </Link>
 
-              <Link href="/#cart" aria-label="Кошик">
+              <Link href="/cart" aria-label="Кошик" className="relative">
                 <Image src="/icons/cart.png" alt="" width={53} height={52}
                 className="max-[768px]:w-[50px] max-[768px]:h-[49px] max-[640px]:hidden"/>
                 <Image src="/icons/cart2.png" alt="" width={41} height={39} className="hidden
                   max-[640px]:block
                   max-[640px]:w-[41px]
                   max-[640px]:h-[39px]"/>
+                {hydrated && cartCount > 0 && (
+                  <span className="absolute -top-2 -right-2 flex h-[22px] min-w-[22px] items-center justify-center rounded-full bg-[#E4002B] px-1 text-[13px] font-bold text-white">
+                    {cartCount}
+                  </span>
+                )}
               </Link>
             </div>
           </div>

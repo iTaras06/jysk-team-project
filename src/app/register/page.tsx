@@ -1,57 +1,51 @@
 "use client";
 
+import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
-import React, { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { registerSchema, type RegisterValues } from "@/features/auth/schemas";
+import { useAuthStore } from "@/features/auth/store";
 
 export default function RegisterPage() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    password: "",
-    confirmPassword: "",
-    agreeToTerms: false,
-  });
+  const router = useRouter();
+  const registerUser = useAuthStore((s) => s.register);
+  const [formError, setFormError] = useState("");
 
-  const [isSuccess, setIsSuccess] = useState(false);
-  const [error, setError] = useState("");
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value, type, checked } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: type === "checkbox" ? checked : value,
-    }));
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setError("");
-
-    if (formData.password !== formData.confirmPassword) {
-      setError("Паролі не збігаються");
-      return;
-    }
-
-    if (!formData.agreeToTerms) {
-      setError("Ви повинні погодитися з умовами використання");
-      return;
-    }
-
-    // Log the user registration data to the console
-    console.log("Реєстрація користувача:", formData);
-
-    setIsSuccess(true);
-    // Reset form fields
-    setFormData({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<RegisterValues>({
+    resolver: zodResolver(registerSchema),
+    defaultValues: {
       name: "",
       email: "",
       phone: "",
       password: "",
       confirmPassword: "",
       agreeToTerms: false,
+    },
+  });
+
+  const onSubmit = (data: RegisterValues) => {
+    setFormError("");
+    const result = registerUser({
+      name: data.name,
+      email: data.email,
+      password: data.password,
     });
+    if (!result.ok) {
+      setFormError(result.error);
+      return;
+    }
+    router.push("/profile");
   };
+
+  const fieldClass =
+    "h-[62px] bg-[#E0E0E0] px-5 text-[22px] font-normal transition-colors outline-none placeholder:text-[#231F2082] focus:border-b-2 focus:border-[#00AAAD] focus:bg-[#d6d6d6]";
+  const errorClass = "text-[16px] font-normal text-red-600";
 
   return (
     <main className="min-h-[calc(100vh-300px)] bg-white text-[#231F20]">
@@ -101,99 +95,51 @@ export default function RegisterPage() {
             Створіть свій особистий кабінет покупця JYSK.
           </p>
 
-          {isSuccess && (
-            <div className="mt-6 border-l-4 border-green-500 bg-green-50 p-4 text-green-700">
-              <p className="font-semibold">Успішна реєстрація!</p>
-              <p className="mt-1 text-[16px]">Дані успішно виведено у консоль розробника.</p>
-              <button
-                onClick={() => setIsSuccess(false)}
-                className="mt-3 text-[16px] font-medium text-[#00AAAD] underline hover:text-[#008f91]"
-              >
-                Зареєструвати іншого користувача
-              </button>
-            </div>
-          )}
-
-          {error && (
+          {formError && (
             <div className="mt-6 border-l-4 border-red-500 bg-red-50 p-4 text-[16px] text-red-700">
-              {error}
+              {formError}
             </div>
           )}
 
-          <form onSubmit={handleSubmit} className="mt-8 flex flex-col gap-6">
+          <form onSubmit={handleSubmit(onSubmit)} noValidate className="mt-8 flex flex-col gap-6">
             <label className="flex flex-col gap-3 text-[20px] font-medium">
               Ім&rsquo;я та Прізвище
-              <input
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                placeholder=""
-                className="h-[62px] bg-[#E0E0E0] px-5 text-[22px] font-normal transition-colors outline-none placeholder:text-[#231F2082] focus:border-b-2 focus:border-[#00AAAD] focus:bg-[#d6d6d6]"
-                required
-              />
+              <input type="text" {...register("name")} className={fieldClass} />
+              {errors.name && <span className={errorClass}>{errors.name.message}</span>}
             </label>
 
             <label className="flex flex-col gap-3 text-[20px] font-medium">
               Email
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                placeholder=""
-                className="h-[62px] bg-[#E0E0E0] px-5 text-[22px] font-normal transition-colors outline-none placeholder:text-[#231F2082] focus:border-b-2 focus:border-[#00AAAD] focus:bg-[#d6d6d6]"
-                required
-              />
+              <input type="email" {...register("email")} className={fieldClass} />
+              {errors.email && <span className={errorClass}>{errors.email.message}</span>}
             </label>
 
             <label className="flex flex-col gap-3 text-[20px] font-medium">
               Телефон
-              <input
-                type="tel"
-                name="phone"
-                value={formData.phone}
-                onChange={handleChange}
-                placeholder=""
-                className="h-[62px] bg-[#E0E0E0] px-5 text-[22px] font-normal transition-colors outline-none placeholder:text-[#231F2082] focus:border-b-2 focus:border-[#00AAAD] focus:bg-[#d6d6d6]"
-              />
+              <input type="tel" {...register("phone")} className={fieldClass} />
+              {errors.phone && <span className={errorClass}>{errors.phone.message}</span>}
             </label>
 
             <label className="flex flex-col gap-3 text-[20px] font-medium">
               Пароль
-              <input
-                type="password"
-                name="password"
-                value={formData.password}
-                onChange={handleChange}
-                placeholder=""
-                className="h-[62px] bg-[#E0E0E0] px-5 text-[22px] font-normal transition-colors outline-none placeholder:text-[#231F2082] focus:border-b-2 focus:border-[#00AAAD] focus:bg-[#d6d6d6]"
-                required
-              />
+              <input type="password" {...register("password")} className={fieldClass} />
+              {errors.password && <span className={errorClass}>{errors.password.message}</span>}
             </label>
 
             <label className="flex flex-col gap-3 text-[20px] font-medium">
               Підтвердження пароля
-              <input
-                type="password"
-                name="confirmPassword"
-                value={formData.confirmPassword}
-                onChange={handleChange}
-                placeholder=""
-                className="h-[62px] bg-[#E0E0E0] px-5 text-[22px] font-normal transition-colors outline-none placeholder:text-[#231F2082] focus:border-b-2 focus:border-[#00AAAD] focus:bg-[#d6d6d6]"
-                required
-              />
+              <input type="password" {...register("confirmPassword")} className={fieldClass} />
+              {errors.confirmPassword && (
+                <span className={errorClass}>{errors.confirmPassword.message}</span>
+              )}
             </label>
 
             <div className="mt-2 flex items-start gap-3 text-[18px]">
               <input
                 type="checkbox"
                 id="agreeToTerms"
-                name="agreeToTerms"
-                checked={formData.agreeToTerms}
-                onChange={handleChange}
+                {...register("agreeToTerms")}
                 className="mt-1 h-5 w-5 cursor-pointer"
-                required
               />
               <label
                 htmlFor="agreeToTerms"
@@ -202,10 +148,14 @@ export default function RegisterPage() {
                 Я погоджуюся з політикою конфіденційності та правилами сервісу JYSK
               </label>
             </div>
+            {errors.agreeToTerms && (
+              <span className={errorClass}>{errors.agreeToTerms.message}</span>
+            )}
 
             <button
               type="submit"
-              className="mt-2 h-[62px] bg-[#00AAAD] text-[24px] font-medium text-white transition-all hover:bg-[#008f91] hover:shadow-lg active:scale-[0.98]"
+              disabled={isSubmitting}
+              className="mt-2 h-[62px] bg-[#00AAAD] text-[24px] font-medium text-white transition-all hover:bg-[#008f91] hover:shadow-lg active:scale-[0.98] disabled:opacity-60"
             >
               Зареєструватися
             </button>

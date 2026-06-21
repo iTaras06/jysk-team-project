@@ -214,6 +214,20 @@ export default function Footer() {
                             max-[640px]:h-[36px]"/>
                     </div>
                 </div>
+
+                <div className="mt-[40px] border-t border-white/30 pt-[20px] text-[14px] text-white/80
+                    max-[640px]:text-center max-[640px]:text-[12px]">
+                    © 2026 HYGGY. Навчальний проєкт. Зображення товарів надано{" "}
+                    <a
+                        href="https://unsplash.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="underline"
+                    >
+                        Unsplash
+                    </a>
+                    .
+                </div>
             </div>
         </footer>
     );

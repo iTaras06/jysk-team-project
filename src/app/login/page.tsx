@@ -1,16 +1,35 @@
 "use client";
 
+import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
-import React, { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { loginSchema, type LoginValues } from "@/features/auth/schemas";
+import { useAuthStore } from "@/features/auth/store";
 
 export default function LoginPage() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [rememberMe, setRememberMe] = useState(false);
+  const router = useRouter();
+  const login = useAuthStore((s) => s.login);
+  const [formError, setFormError] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log("Вхід користувача:", { email, password, rememberMe });
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<LoginValues>({
+    resolver: zodResolver(loginSchema),
+    defaultValues: { email: "", password: "", rememberMe: false },
+  });
+
+  const onSubmit = (data: LoginValues) => {
+    setFormError("");
+    const result = login(data.email, data.password);
+    if (!result.ok) {
+      setFormError(result.error);
+      return;
+    }
+    router.push("/profile");
   };
 
   return (
@@ -53,38 +72,44 @@ export default function LoginPage() {
             Введіть email та пароль від вашого акаунта.
           </p>
 
-          <form onSubmit={handleSubmit} className="mt-8 flex flex-col gap-6">
+          {formError && (
+            <div className="mt-6 border-l-4 border-red-500 bg-red-50 p-4 text-[16px] text-red-700">
+              {formError}
+            </div>
+          )}
+
+          <form onSubmit={handleSubmit(onSubmit)} noValidate className="mt-8 flex flex-col gap-6">
             <label className="flex flex-col gap-3 text-[20px] font-medium">
               Email
               <input
                 type="email"
-                name="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                {...register("email")}
                 className="h-[62px] bg-[#E0E0E0] px-5 text-[22px] font-normal transition-colors outline-none placeholder:text-[#231F2082] focus:border-b-2 focus:border-[#00AAAD] focus:bg-[#d6d6d6]"
-                required
               />
+              {errors.email && (
+                <span className="text-[16px] font-normal text-red-600">{errors.email.message}</span>
+              )}
             </label>
 
             <label className="flex flex-col gap-3 text-[20px] font-medium">
               Пароль
               <input
                 type="password"
-                name="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                {...register("password")}
                 className="h-[62px] bg-[#E0E0E0] px-5 text-[22px] font-normal transition-colors outline-none placeholder:text-[#231F2082] focus:border-b-2 focus:border-[#00AAAD] focus:bg-[#d6d6d6]"
-                required
               />
+              {errors.password && (
+                <span className="text-[16px] font-normal text-red-600">
+                  {errors.password.message}
+                </span>
+              )}
             </label>
 
             <div className="flex items-center justify-between text-[18px]">
               <label className="flex cursor-pointer items-center gap-3 select-none">
                 <input
                   type="checkbox"
-                  name="remember"
-                  checked={rememberMe}
-                  onChange={(e) => setRememberMe(e.target.checked)}
+                  {...register("rememberMe")}
                   className="h-5 w-5 cursor-pointer"
                 />
                 Запам&rsquo;ятати мене
@@ -96,7 +121,8 @@ export default function LoginPage() {
 
             <button
               type="submit"
-              className="mt-2 h-[62px] bg-[#00AAAD] text-[24px] font-medium text-white transition-all hover:bg-[#008f91] hover:shadow-lg active:scale-[0.98]"
+              disabled={isSubmitting}
+              className="mt-2 h-[62px] bg-[#00AAAD] text-[24px] font-medium text-white transition-all hover:bg-[#008f91] hover:shadow-lg active:scale-[0.98] disabled:opacity-60"
             >
               Увійти
             </button>

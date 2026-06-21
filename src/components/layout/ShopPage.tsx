@@ -133,7 +133,7 @@ return (
                         </div>
 
                         <div className="flex justify-between">
-                            <span>П'ятниця</span>
+                            <span>П’ятниця</span>
                             <span>10:00 - 20:00</span>
                         </div>
 
