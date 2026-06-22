@@ -12,8 +12,20 @@ interface Props {
   onSelect: (store: Store) => void;
 }
 
+const weekDays = [
+  "Понеділок",
+  "Вівторок",
+  "Середа",
+  "Четвер",
+  "П’ятниця",
+  "Субота",
+  "Неділя",
+];
+
 export default function Stores({ isOpen, onClose, selectedId, onSelect }: Props) {
   const [query, setQuery] = useState("");
+  // Який магазин показує розгорнутий графік роботи.
+  const [hoursOpenId, setHoursOpenId] = useState<number | null>(null);
 
   // Esc закриває панель + блокування прокрутки сторінки.
   useEffect(() => {
@@ -108,7 +120,7 @@ export default function Stores({ isOpen, onClose, selectedId, onSelect }: Props)
                     <ButtonStores selected={isSelected} onClick={() => onSelect(store)} />
                   </div>
 
-                  <div className="mt-[18px] flex items-center justify-between">
+                  <div className="mt-[18px] flex items-center justify-between gap-4">
                     <div className="text-[16px]">
                       <span
                         className={`font-semibold ${
@@ -119,9 +131,43 @@ export default function Stores({ isOpen, onClose, selectedId, onSelect }: Props)
                       </span>{" "}
                       {store.hours}
                     </div>
-                    <button type="button" className="text-[16px] font-semibold text-[#00AAAD] underline">
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setHoursOpenId((cur) => (cur === store.id ? null : store.id))
+                      }
+                      aria-expanded={hoursOpenId === store.id}
+                      className="flex shrink-0 items-center gap-1 text-[16px] font-semibold text-[#00AAAD] underline transition hover:text-[#009396]"
+                    >
                       Робочі години
+                      <span
+                        className={`text-[13px] no-underline transition-transform duration-300 ${
+                          hoursOpenId === store.id ? "rotate-90" : ""
+                        }`}
+                      >
+                        {">"}
+                      </span>
                     </button>
+                  </div>
+
+                  {/* Плавне розгортання графіка через grid-rows 0fr → 1fr */}
+                  <div
+                    className={`grid transition-all duration-300 ease-out ${
+                      hoursOpenId === store.id
+                        ? "mt-[16px] grid-rows-[1fr] opacity-100"
+                        : "grid-rows-[0fr] opacity-0"
+                    }`}
+                  >
+                    <div className="overflow-hidden">
+                      <div className="flex flex-col gap-[8px] border-t border-black/10 pt-[14px] text-[15px]">
+                        {weekDays.map((day, d) => (
+                          <div key={day} className="flex justify-between">
+                            <span className="text-[#231F20B3]">{day}</span>
+                            <span>{d < 5 ? store.week.weekday : store.week.weekend}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
                   </div>
                 </div>
               );

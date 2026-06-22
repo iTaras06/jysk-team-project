@@ -5,6 +5,8 @@ export interface Store {
   address: string;
   isOpen: boolean;
   hours: string;
+  // Графік на тиждень: будні та вихідні.
+  week: { weekday: string; weekend: string };
 }
 
 export const stores: Store[] = [
@@ -15,6 +17,7 @@ export const stores: Store[] = [
     address: "просп. Миколи Бажана, 14А",
     isOpen: true,
     hours: "Зачиняється о 20:00",
+    week: { weekday: "10:00 – 20:00", weekend: "10:00 – 19:00" },
   },
   {
     id: 2,
@@ -23,6 +26,7 @@ export const stores: Store[] = [
     address: "вул. Під Дубом, 7Б",
     isOpen: true,
     hours: "Зачиняється о 21:00",
+    week: { weekday: "10:00 – 21:00", weekend: "10:00 – 20:00" },
   },
   {
     id: 3,
@@ -31,6 +35,7 @@ export const stores: Store[] = [
     address: "Фонтанська дорога, 25",
     isOpen: false,
     hours: "Відчиниться о 10:00",
+    week: { weekday: "10:00 – 20:00", weekend: "10:00 – 19:00" },
   },
   {
     id: 4,
@@ -39,6 +44,7 @@ export const stores: Store[] = [
     address: "вул. Глінки, 2",
     isOpen: true,
     hours: "Зачиняється о 20:00",
+    week: { weekday: "10:00 – 20:00", weekend: "10:00 – 19:00" },
   },
   {
     id: 5,
@@ -47,6 +53,7 @@ export const stores: Store[] = [
     address: "вул. Сумська, 114",
     isOpen: true,
     hours: "Зачиняється о 21:00",
+    week: { weekday: "10:00 – 21:00", weekend: "10:00 – 20:00" },
   },
   {
     id: 6,
@@ -55,5 +62,6 @@ export const stores: Store[] = [
     address: "вул. Михайла Грушевського, 5",
     isOpen: false,
     hours: "Відчиниться о 10:00",
+    week: { weekday: "10:00 – 20:00", weekend: "10:00 – 18:00" },
   },
 ];
