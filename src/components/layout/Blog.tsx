@@ -149,16 +149,18 @@ function BlogSection({
         {title}
       </h2>
 
-      <div className="grid grid-cols-[673px_389px_389px] grid-rows-[302px_302px] gap-[30px] justify-center
+      <div className="mx-auto grid max-w-[1500px] grid-cols-[2fr_1fr_1fr] grid-rows-[302px_302px] gap-[30px] px-[20px]
           max-[768px]:mx-[20px]
+          max-[768px]:max-w-none
           max-[768px]:grid-cols-2
           max-[768px]:[grid-template-rows:auto]
-          max-[768px]:gap-[10px]">
+          max-[768px]:gap-[10px]
+          max-[768px]:px-0">
 
         <Link href="#" className="relative row-span-2 overflow-hidden
             max-[768px]:col-span-2
             max-[768px]:row-span-1">
-          <Image src={cards[0].image} alt={cards[0].title} width={673} height={631} className="h-[634px] w-[673px] object-cover
+          <Image src={cards[0].image} alt={cards[0].title} width={673} height={631} className="h-full w-full object-cover
             max-[768px]:h-auto
             max-[768px]:w-full"/>
 
@@ -172,7 +174,7 @@ function BlogSection({
         </Link>
 
         <Link href="#" className="relative overflow-hidden">
-          <Image src={cards[1].image} alt={cards[1].title} width={389} height={302} className="h-[302px] w-[389px] object-cover
+          <Image src={cards[1].image} alt={cards[1].title} width={389} height={302} className="h-[302px] w-full object-cover
             max-[768px]:h-auto
             max-[768px]:w-full"/>
 
@@ -191,7 +193,7 @@ function BlogSection({
         </Link>
 
         <Link href="#" className="relative overflow-hidden">
-          <Image src={cards[2].image} alt={cards[2].title} width={389} height={302} className="h-[302px] w-[389px] object-cover
+          <Image src={cards[2].image} alt={cards[2].title} width={389} height={302} className="h-[302px] w-full object-cover
             max-[768px]:h-auto
             max-[768px]:w-full"/>
           <div className="absolute inset-0 bg-black/20" />
@@ -209,9 +211,9 @@ function BlogSection({
         </Link>
 
         <Link href="#" className="relative overflow-hidden">
-          <Image src={cards[3].image} alt={cards[3].title} width={389} height={302} className="h-[302px] w-[389px] object-cover
+          <Image src={cards[3].image} alt={cards[3].title} width={389} height={302} className="h-[302px] w-full object-cover
             max-[768px]:h-auto
-            max-[768px]:w-full]"/>
+            max-[768px]:w-full"/>
 
           <div className="absolute inset-0 bg-black/20" />
 
@@ -228,7 +230,7 @@ function BlogSection({
         </Link>
 
         <Link href="#" className="relative overflow-hidden">
-          <Image src={cards[4].image} alt={cards[4].title} width={389} height={302} className="h-[302px] w-[389px] object-cover
+          <Image src={cards[4].image} alt={cards[4].title} width={389} height={302} className="h-[302px] w-full object-cover
             max-[768px]:h-auto
             max-[768px]:w-full"/>
           <div className="absolute inset-0 bg-black/20" />

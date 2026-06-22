@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import ProductCard from "@/components/ui/ProductCard";
+import Reveal from "@/components/ui/Reveal";
 import { getCategories, getCategoryBySlug, getProductsByCategory } from "@/lib/api";
 
 // У Next 16 params у динамічних роутах — Promise, треба await.
@@ -48,8 +49,10 @@ export default async function CategoryPage({ params }: Params) {
 
         {products.length > 0 ? (
           <div className="mt-7 grid grid-cols-4 gap-7 max-[1024px]:grid-cols-3 max-[768px]:grid-cols-2 max-[480px]:grid-cols-1">
-            {products.map((product) => (
-              <ProductCard key={product.id} product={product} />
+            {products.map((product, i) => (
+              <Reveal key={product.id} delay={(i % 4) * 80}>
+                <ProductCard product={product} />
+              </Reveal>
             ))}
           </div>
         ) : (

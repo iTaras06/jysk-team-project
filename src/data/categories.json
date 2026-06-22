@@ -1,8 +1,8 @@
 [
-  { "id": "1", "slug": "bedroom", "name": "Спальня" },
-  { "id": "2", "slug": "living-room", "name": "Вітальня" },
-  { "id": "3", "slug": "bathroom", "name": "Ванна" },
-  { "id": "4", "slug": "office", "name": "Офіс" },
-  { "id": "5", "slug": "garden", "name": "Сад" },
-  { "id": "6", "slug": "decor", "name": "Декор" }
+  { "id": "1", "slug": "bedroom", "name": "Спальня", "image": "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=600&q=80&auto=format&fit=crop" },
+  { "id": "2", "slug": "living-room", "name": "Вітальня", "image": "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=600&q=80&auto=format&fit=crop" },
+  { "id": "3", "slug": "bathroom", "name": "Ванна", "image": "https://images.unsplash.com/photo-1631889993959-41b4e9c6e3c5?w=600&q=80&auto=format&fit=crop" },
+  { "id": "4", "slug": "office", "name": "Офіс", "image": "https://images.unsplash.com/photo-1538688525198-9b88f6f53126?w=600&q=80&auto=format&fit=crop" },
+  { "id": "5", "slug": "garden", "name": "Сад", "image": "https://images.unsplash.com/photo-1485955900006-10f4d324d411?w=600&q=80&auto=format&fit=crop" },
+  { "id": "6", "slug": "decor", "name": "Декор", "image": "https://images.unsplash.com/photo-1517991104123-1d56a6e81ed9?w=600&q=80&auto=format&fit=crop" }
 ]

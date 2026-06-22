@@ -1,5 +1,7 @@
+import Image from "next/image";
 import Link from "next/link";
 import ProductCard from "@/components/ui/ProductCard";
+import Reveal from "@/components/ui/Reveal";
 import { getCategories, getProducts } from "@/lib/api";
 
 export const metadata = {
@@ -21,25 +23,44 @@ export default async function CatalogPage() {
           <span className="text-[#231F20]">Каталог</span>
         </nav>
 
-        <h1 className="text-[40px] font-bold">Каталог</h1>
+        <Reveal>
+          <h1 className="text-[40px] font-bold">Каталог</h1>
+        </Reveal>
 
         <div className="mt-7 mb-11 grid grid-cols-6 gap-6 max-[1024px]:grid-cols-3 max-[640px]:grid-cols-2">
-          {categories.map((category) => (
-            <Link
-              key={category.id}
-              href={`/catalog/${category.slug}`}
-              className="flex h-[123px] flex-col justify-between bg-[#E0E0E0] p-6 transition hover:bg-[#D3D3D3]"
-            >
-              <span className="h-[35px] w-[35px] bg-[#00AAAD]" />
-              <span className="text-[20px] font-medium">{category.name}</span>
-            </Link>
+          {categories.map((category, i) => (
+            <Reveal key={category.id} delay={i * 70}>
+              <Link
+                href={`/catalog/${category.slug}`}
+                className="group relative block h-[160px] overflow-hidden max-[640px]:h-[130px]"
+              >
+                {category.image && (
+                  <Image
+                    src={category.image}
+                    alt={category.name}
+                    fill
+                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 220px"
+                    className="object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                )}
+                <div className="absolute inset-0 bg-black/30 transition-colors duration-300 group-hover:bg-black/45" />
+                <span className="absolute bottom-4 left-4 text-[20px] font-medium text-white">
+                  {category.name}
+                </span>
+              </Link>
+            </Reveal>
           ))}
         </div>
 
-        <h2 className="mb-6 text-[28px] font-bold">Усі товари</h2>
+        <Reveal>
+          <h2 className="mb-6 text-[28px] font-bold">Усі товари</h2>
+        </Reveal>
+
         <div className="grid grid-cols-4 gap-7 max-[1024px]:grid-cols-3 max-[768px]:grid-cols-2 max-[480px]:grid-cols-1">
-          {products.map((product) => (
-            <ProductCard key={product.id} product={product} />
+          {products.map((product, i) => (
+            <Reveal key={product.id} delay={(i % 4) * 80}>
+              <ProductCard product={product} />
+            </Reveal>
           ))}
         </div>
       </section>

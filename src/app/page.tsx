@@ -1,5 +1,7 @@
+import Image from "next/image";
 import Link from "next/link";
 import ProductCard from "@/components/ui/ProductCard";
+import Prefooter from "@/components/layout/Prefooter";
 import { getCategories, getRecommendedProducts } from "@/lib/api";
 
 export default async function Home() {
@@ -9,31 +11,34 @@ export default async function Home() {
   ]);
 
   return (
+    <>
     <main className="w-full bg-white text-[#231F20]">
       <section id="store" className="mx-auto flex max-w-[1408px] gap-7 px-9 py-9 max-[900px]:flex-col max-[640px]:px-5">
-        <div className="flex min-h-[352px] flex-1 bg-[#E0E0E0] max-[640px]:flex-col">
-          <div className="flex w-[52%] flex-col justify-center px-11 max-[900px]:w-[55%] max-[640px]:w-full max-[640px]:px-7 max-[640px]:py-8">
-            <p className="mb-4 text-[20px] font-medium text-[#00AAAD]">Знижки до 50%</p>
+        <div className="group relative flex min-h-[352px] flex-1 overflow-hidden">
+          <Image
+            src="https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=1600&q=80&auto=format&fit=crop"
+            alt="Інтер'єр у скандинавському стилі"
+            fill
+            sizes="(max-width: 900px) 100vw, 1060px"
+            className="object-cover transition-transform duration-700 group-hover:scale-105"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/65 via-black/40 to-black/15" />
+
+          <div className="relative flex w-[60%] flex-col justify-center px-11 text-white max-[900px]:w-[70%] max-[640px]:w-full max-[640px]:px-7 max-[640px]:py-10">
+            <p className="mb-4 text-[20px] font-medium text-[#5FD2D4]">Знижки до 50%</p>
             <h1 className="max-w-[506px] text-[53px] leading-[1.04] font-bold max-[640px]:text-[36px]">
               Оновіть дім до літа
             </h1>
-            <p className="mt-6 max-w-[462px] text-[21px] leading-[1.35] text-[#231F20B3] max-[640px]:text-[18px]">
+            <p className="mt-6 max-w-[462px] text-[21px] leading-[1.35] text-white/85 max-[640px]:text-[18px]">
               Меблі, текстиль і декор у спокійному скандинавському стилі для кожної кімнати.
             </p>
-            <button className="mt-7 h-[51px] w-[189px] bg-[#00AAAD] text-[20px] font-medium text-white transition hover:bg-[#009396]">
+            <Link
+              href="/catalog"
+              className="mt-7 flex h-[51px] w-[189px] items-center justify-center bg-[#00AAAD] text-[20px] font-medium text-white transition hover:bg-[#009396]"
+            >
               Дивитися акції
-            </button>
-          </div>
-
-          <div className="flex flex-1 items-center justify-center px-7 max-[640px]:py-8">
-            <div className="relative h-[255px] w-full max-w-[429px]">
-              <div className="absolute bottom-0 left-0 h-[96px] w-full bg-white" />
-              <div className="absolute bottom-[81px] left-[35px] h-[120px] w-[174px] bg-[#00AAAD]" />
-              <div className="absolute right-[43px] bottom-[81px] h-[144px] w-[149px] bg-[#231F20]" />
-              <div className="absolute right-[76px] bottom-[162px] h-[48px] w-[81px] bg-white" />
-              <div className="absolute bottom-[96px] left-[157px] h-[65px] w-[142px] bg-[#F5F5F5]" />
-              <div className="absolute bottom-[24px] left-[57px] h-[29px] w-[314px] bg-[#231F20]" />
-            </div>
+            </Link>
           </div>
         </div>
 
@@ -43,9 +48,12 @@ export default async function Home() {
               <p className="text-[20px] font-medium">Товар тижня</p>
               <h2 className="mt-4 text-[34px] leading-tight font-bold">Матраци від 2 499 грн</h2>
             </div>
-            <button className="h-[44px] w-[156px] bg-white text-[18px] font-medium text-[#231F20]">
+            <Link
+              href="/catalog/bedroom"
+              className="flex h-[44px] w-[156px] items-center justify-center bg-white text-[18px] font-medium text-[#231F20] transition hover:bg-[#F0F0F0]"
+            >
               Купити
-            </button>
+            </Link>
           </div>
 
           <div className="bg-[#E0E0E0] p-7">
@@ -72,11 +80,22 @@ export default async function Home() {
           {categories.map((category) => (
             <Link
               href={`/catalog/${category.slug}`}
-              className="flex h-[123px] flex-col justify-between bg-[#E0E0E0] p-6 text-left transition hover:bg-[#D3D3D3]"
+              className="group relative block h-[160px] overflow-hidden max-[640px]:h-[130px]"
               key={category.id}
             >
-              <span className="h-[35px] w-[35px] bg-[#00AAAD]" />
-              <span className="text-[20px] font-medium">{category.name}</span>
+              {category.image && (
+                <Image
+                  src={category.image}
+                  alt={category.name}
+                  fill
+                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 220px"
+                  className="object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+              )}
+              <div className="absolute inset-0 bg-black/30 transition-colors duration-300 group-hover:bg-black/45" />
+              <span className="absolute bottom-4 left-4 text-[20px] font-medium text-white">
+                {category.name}
+              </span>
             </Link>
           ))}
         </div>
@@ -132,7 +151,7 @@ export default async function Home() {
             </p>
           </div>
           <div id="jobs" className="bg-[#E0E0E0] p-7">
-            <p className="text-[23px] font-bold">Робота в JYSK</p>
+            <p className="text-[23px] font-bold">Робота в HYGGY</p>
             <p className="mt-2 text-[17px] text-[#231F20B3]">
               Відкриті позиції для магазинів, складу та офісної команди.
             </p>
@@ -144,9 +163,9 @@ export default async function Home() {
             </p>
           </div>
         </div>
-        <div id="favorites" className="h-0" />
-        <div id="cart" className="h-0" />
       </section>
     </main>
+    <Prefooter />
+    </>
   );
 }

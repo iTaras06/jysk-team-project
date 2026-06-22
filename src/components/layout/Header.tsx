@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import Menu from "@/components/layout/Menu";
 import Stores from "@/components/layout/Stores";
+import { stores } from "@/data/stores";
 import { useAuthStore } from "@/features/auth/store";
 import { selectCartCount, useCartStore } from "@/features/cart/store";
 import { useFavoritesStore } from "@/features/favorites/store";
@@ -20,6 +21,7 @@ const navLinks = [
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isStoresOpen, setIsStoresOpen] = useState(false);
+  const [selectedStore, setSelectedStore] = useState(stores[0]);
   const hydrated = useHydrated();
   const cartCount = useCartStore(selectCartCount);
   const favCount = useFavoritesStore((s) => s.ids.length);
@@ -27,10 +29,10 @@ export default function Header() {
   const profileHref = hydrated && user ? "/profile" : "/login";
   return (
     <>
-    <header className="relative w-full h-[249px] text-[#231F20] border-b border-black/50 shadow-[0px_4px_10px_rgba(0,0,0,0.25)] max-[768px]:h-auto">
+    <header className="relative w-full min-h-[249px] text-[#231F20] border-b border-black/50 shadow-[0px_4px_10px_rgba(0,0,0,0.25)] max-[768px]:min-h-0 max-[768px]:h-auto">
 
       <div className="h-[48px] w-full bg-[#00AAAD] max-[768px]:h-[35px]" />
-      <div className="h-[201px] w-full bg-white max-[768px]:h-auto">
+      <div className="min-h-[201px] w-full bg-white max-[768px]:min-h-0 max-[768px]:h-auto">
         <div className="w-full border-b border-black/50 max-[768px]:border-none">
           <div className="mx-[6%] flex h-[123px]  items-center px-10
             max-[768px]:h-[96px]
@@ -42,8 +44,8 @@ export default function Header() {
               <Image src="/icons/logo.png"  alt="HYGGY" width={91} height={58} className="max-[768px]:w-[74px] max-[768px]:h-[48px]"/>
             </Link>
 
-            <button type="button" onClick={() => setIsMenuOpen(true)}
-              className="ml-9 flex items-center gap-[52px]
+            <button type="button" onClick={() => setIsMenuOpen(true)} aria-label="Відкрити меню"
+              className="ml-6 flex items-center gap-5
               max-[768px]:ml-[-120px]
               max-[768px]:gap-[30px]
               max-[640px]:gap-[6px]">
@@ -60,7 +62,7 @@ export default function Header() {
 
             <form
               action="/search"
-              className="ml-[105px] flex h-[58px] max-w-[748px] flex-1 items-center rounded-[10px] bg-[#E0E0E0] px-6
+              className="ml-8 flex h-[58px] max-w-[748px] flex-1 items-center rounded-[10px] bg-[#E0E0E0] px-6
               max-[768px]:absolute
               max-[768px]:top-[136px]
               max-[768px]:left-[30px]
@@ -89,7 +91,7 @@ export default function Header() {
               max-[768px]:bg-black/40
               max-[640px]:hidden"/>
 
-            <div className="ml-auto flex shrink-0 items-center gap-[66px]
+            <div className="ml-auto flex shrink-0 items-center gap-8
             max-[768px]:ml-0
             max-[768px]:gap-[36px]
             max-[640px]:gap-[30px]">
@@ -135,28 +137,31 @@ export default function Header() {
         </div>
 
 
-        <div className="flex min-h-[74px] mx-[4%] items-center justify-between px-24
+        <div className="flex min-h-[74px] mx-[4%] flex-wrap items-center justify-between gap-x-8 gap-y-4 px-10 py-4
+          max-[1280px]:justify-center
           max-[768px]:mt-[70px]
           max-[768px]:h-[108px]
           max-[768px]:flex-col
           max-[768px]:items-center
+          max-[768px]:gap-y-0
           max-[768px]:px-0
+          max-[768px]:py-0
           max-[640px]:h-[90px]
-          max-[640px]:mt-[0px]"> 
+          max-[640px]:mt-[0px]">
 
           <button type="button" onClick={() => setIsStoresOpen(true)}
-            className="flex items-center gap-4 whitespace-nowrap shrink-0 max-[768px]:hidden">
+            className="group flex items-center gap-4 whitespace-nowrap shrink-0 transition hover:opacity-80 max-[768px]:hidden">
             <Image src="/icons/stor.png" alt="" width={20} height={24} className="shrink-0"/>
-            <span className="text-[20px] whitespace-nowrap">HYGGY Київ ТЦ Променада</span>
+            <span className="text-[20px] whitespace-nowrap underline-offset-4 group-hover:underline">{selectedStore.name}</span>
             <Image src="/icons/check.png" alt="" width={16} height={16} className="shrink-0"/>
           </button>
 
-          <nav className="flex items-center gap-8
+          <nav className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3
             max-[768px]:ml-0
             max-[768px]:mt-[40px]
             max-[768px]:mb-[40px]
             max-[768px]:gap-[16px]
-            max-[640px]:hidden" 
+            max-[640px]:hidden"
             aria-label="Головна навігація">
 
             {navLinks.map((link) => (
@@ -173,7 +178,15 @@ export default function Header() {
     </header>
     <Menu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
 
-    <Stores isOpen={isStoresOpen} onClose={() => setIsStoresOpen(false)} />
+    <Stores
+      isOpen={isStoresOpen}
+      onClose={() => setIsStoresOpen(false)}
+      selectedId={selectedStore.id}
+      onSelect={(store) => {
+        setSelectedStore(store);
+        setIsStoresOpen(false);
+      }}
+    />
     </>
   );
 }

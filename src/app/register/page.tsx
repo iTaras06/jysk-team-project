@@ -50,7 +50,7 @@ export default function RegisterPage() {
   return (
     <main className="min-h-[calc(100vh-300px)] bg-white text-[#231F20]">
       <section className="mx-auto flex max-w-[1700px] gap-10 px-10 py-12">
-        {/* Left Side: JYSK Benefits Info Panel */}
+        {/* Left Side: HYGGY Benefits Info Panel */}
         <div className="flex flex-1 flex-col justify-between bg-[#E0E0E0] p-12">
           <div>
             <p className="text-[24px] font-medium text-[#00AAAD]">Профіль покупця</p>
@@ -58,7 +58,7 @@ export default function RegisterPage() {
               Створіть акаунт та отримайте переваги
             </h1>
             <p className="mt-7 max-w-[620px] text-[24px] leading-[1.35] text-[#231F20B3]">
-              Приєднуйтесь до JYSK, щоб зберігати список улюблених товарів, відслідковувати статус
+              Приєднуйтесь до HYGGY, щоб зберігати список улюблених товарів, відслідковувати статус
               замовлень та отримувати персональні пропозиції.
             </p>
           </div>
@@ -92,7 +92,7 @@ export default function RegisterPage() {
         <div className="w-[520px] border border-[#00000030] bg-white p-10 transition-all hover:border-[#00AAAD]">
           <h2 className="text-[42px] font-bold">Реєстрація</h2>
           <p className="mt-3 text-[20px] text-[#231F20B3]">
-            Створіть свій особистий кабінет покупця JYSK.
+            Створіть свій особистий кабінет покупця HYGGY.
           </p>
 
           {formError && (
@@ -145,7 +145,7 @@ export default function RegisterPage() {
                 htmlFor="agreeToTerms"
                 className="cursor-pointer leading-snug text-[#231F20B3] select-none"
               >
-                Я погоджуюся з політикою конфіденційності та правилами сервісу JYSK
+                Я погоджуюся з політикою конфіденційності та правилами сервісу HYGGY
               </label>
             </div>
             {errors.agreeToTerms && (

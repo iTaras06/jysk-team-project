@@ -1,93 +1,138 @@
 "use client";
 
+import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import ButtonStores from "./ButtonStores";
+import { stores, type Store } from "@/data/stores";
 
-interface Props {isOpen: boolean; onClose: () => void;}
+interface Props {
+  isOpen: boolean;
+  onClose: () => void;
+  selectedId: number;
+  onSelect: (store: Store) => void;
+}
 
-const stores = [
-  {
-    id: 1,
-    name: "HYGGY Київ, ТЦ Променада",
-    status: "Відчинено:",
-    closeTime: "Зачиняється о 20:00",
-  },
-  {
-    id: 2,
-    name: "HYGGY Київ, ТЦ Променада",
-    status: "Відчинено:",
-    closeTime: "Зачиняється о 20:00",
-  },
-  {
-    id: 3,
-    name: "HYGGY Київ, ТЦ Променада",
-    status: "Відчинено:",
-    closeTime: "Зачиняється о 20:00",
-  },
-  {
-    id: 4,
-    name: "HYGGY Київ, ТЦ Променада",
-    status: "Відчинено:",
-    closeTime: "Зачиняється о 20:00",
-  },
-  {
-    id: 5,
-    name: "HYGGY Київ, ТЦ Променада",
-    status: "Відчинено:",
-    closeTime: "Зачиняється о 20:00",
-  },
-];
+export default function Stores({ isOpen, onClose, selectedId, onSelect }: Props) {
+  const [query, setQuery] = useState("");
 
-export default function Stores({isOpen, onClose,}: Props) 
-{
-  if (!isOpen) return null;
+  // Esc закриває панель + блокування прокрутки сторінки.
+  useEffect(() => {
+    if (!isOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    document.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [isOpen, onClose]);
+
+  // Робочий пошук по назві / місту / адресі.
+  const filtered = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    if (!q) return stores;
+    return stores.filter(
+      (s) =>
+        s.name.toLowerCase().includes(q) ||
+        s.city.toLowerCase().includes(q) ||
+        s.address.toLowerCase().includes(q),
+    );
+  }, [query]);
 
   return (
     <div
-      className="fixed left-0 top-0 z-50 w-[600px] max-w-full bg-white shadow-[0px_4px_20px_rgba(0,0,0,0.15)]">
+      className={`fixed inset-0 z-50 ${isOpen ? "" : "pointer-events-none"}`}
+      aria-hidden={!isOpen}
+    >
+      <div
+        onClick={onClose}
+        className={`absolute inset-0 bg-black/40 transition-opacity duration-300 ${
+          isOpen ? "opacity-100" : "opacity-0"
+        }`}
+      />
 
-      <div className="relative px-[40px] py-[30px]">
-        <h2 className="text-center text-[24px] font-semibold">
-          HYGGY Київ ТЦ Променада
-        </h2>
-        <button onClick={onClose}
-          className="absolute right-[40px] top-[20px] text-[55px] leading-none transition hover:opacity-60">×
-        </button>
-      </div>
-
-      <div className="h-[1px] w-full bg-black/30"/>
-
-      <div className="px-[40px] pt-[40px]">
-        <div className="flex h-[68px] items-center rounded-[12px] bg-[#E0E0E0] px-[35px]">
-          <input type="search" placeholder="Пошук..."
-            className="flex-1 bg-transparent text-[24px] outline-none placeholder:text-black/40"/>          
-          <Image src="/icons/lens.png" alt="" width={29} height={29}/>
+      <aside
+        role="dialog"
+        aria-modal="true"
+        aria-label="Вибір магазину"
+        className={`absolute left-0 top-0 flex h-full w-[600px] max-w-full flex-col bg-white shadow-[0px_4px_20px_rgba(0,0,0,0.15)] transition-transform duration-300 ease-out ${
+          isOpen ? "translate-x-0" : "-translate-x-full"
+        }`}
+      >
+        <div className="relative px-[40px] py-[26px] max-[640px]:px-[24px]">
+          <h2 className="text-center text-[22px] font-semibold">Оберіть магазин</h2>
+          <button
+            type="button"
+            onClick={onClose}
+            aria-label="Закрити"
+            className="absolute right-[36px] top-[18px] text-[45px] leading-none transition hover:rotate-90 hover:opacity-60"
+          >
+            ×
+          </button>
         </div>
-      </div>
 
-      <div className="p-[40px]">
-        <div className="flex flex-col gap-[26px]">
-          {stores.map((store) => (
-            <div key={store.id}
-              className="border border-black/30 p-[25px]">
-              <div className="flex justify-between">
-                <h3 className="max-w-[240px] text-[24px] max-[640px]:text-[20px] font-semibold leading-[1.2]">{store.name}
-                </h3>
-                <ButtonStores />
-              </div>
+        <div className="h-[1px] w-full bg-black/20" />
 
-              <div className="mt-[35px] flex items-center justify-between">
-                <div className="text-[19px]">
-                  <span className="font-semibold text-[#76C043]">{store.status}</span>{" "}{store.closeTime}
+        <div className="px-[40px] pt-[28px] max-[640px]:px-[24px]">
+          <div className="flex h-[56px] items-center rounded-[12px] bg-[#E0E0E0] px-6">
+            <input
+              type="search"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder="Пошук за містом або адресою..."
+              className="flex-1 bg-transparent text-[18px] outline-none placeholder:text-black/40"
+            />
+            <Image src="/icons/lens.png" alt="" width={24} height={24} />
+          </div>
+        </div>
+
+        <div className="flex-1 overflow-y-auto p-[40px] max-[640px]:px-[24px]">
+          <div className="flex flex-col gap-[20px]">
+            {filtered.map((store, i) => {
+              const isSelected = store.id === selectedId;
+              return (
+                <div
+                  key={store.id}
+                  className={`border p-[22px] transition-all duration-300 ease-out ${
+                    isSelected ? "border-[#00AAAD] bg-[#00AAAD]/5" : "border-black/20"
+                  } ${isOpen ? "translate-x-0 opacity-100" : "translate-x-4 opacity-0"}`}
+                  style={{ transitionDelay: isOpen ? `${100 + i * 50}ms` : "0ms" }}
+                >
+                  <div className="flex items-start justify-between gap-4">
+                    <div>
+                      <h3 className="text-[20px] font-semibold leading-[1.2]">{store.name}</h3>
+                      <p className="mt-1 text-[16px] text-[#231F20B3]">{store.address}</p>
+                    </div>
+                    <ButtonStores selected={isSelected} onClick={() => onSelect(store)} />
+                  </div>
+
+                  <div className="mt-[18px] flex items-center justify-between">
+                    <div className="text-[16px]">
+                      <span
+                        className={`font-semibold ${
+                          store.isOpen ? "text-[#76C043]" : "text-[#E4002B]"
+                        }`}
+                      >
+                        {store.isOpen ? "Відчинено:" : "Зачинено:"}
+                      </span>{" "}
+                      {store.hours}
+                    </div>
+                    <button type="button" className="text-[16px] font-semibold text-[#00AAAD] underline">
+                      Робочі години
+                    </button>
+                  </div>
                 </div>
-                <button type="button"
-                  className="text-[20px] max-[640px]:text-[18px] font-semibold text-[#00AAAD] underline">Робочі години
-                </button>
-              </div>
-            </div>
-          ))}
+              );
+            })}
+
+            {filtered.length === 0 && (
+              <p className="text-[18px] text-[#231F20B3]">Магазинів не знайдено.</p>
+            )}
+          </div>
         </div>
-      </div>
+      </aside>
     </div>
   );
 }

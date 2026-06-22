@@ -25,25 +25,25 @@ export default function Footer() {
                         <div className="flex flex-col gap-[13px]
                         max-[768px]:gap-[14px]
                         max-[640px]:gap-[10px]">
-                        <Link href="/" className="text-[17px] max-[768px]:text-[16px] max-[640px]:text-[12px]">Спальня</Link>
+                        <Link href="/catalog/bedroom" className="text-[17px] transition-colors hover:underline max-[768px]:text-[16px] max-[640px]:text-[12px]">Спальня</Link>
 
-                        <Link href="/" className="text-[17px] max-[768px]:text-[16px] max-[640px]:text-[12px]">Ванна</Link>
+                        <Link href="/catalog/bathroom" className="text-[17px] transition-colors hover:underline max-[768px]:text-[16px] max-[640px]:text-[12px]">Ванна</Link>
 
-                        <Link href="/" className="text-[17px] max-[768px]:text-[16px] max-[640px]:text-[12px]">Офіс</Link>
+                        <Link href="/catalog/office" className="text-[17px] transition-colors hover:underline max-[768px]:text-[16px] max-[640px]:text-[12px]">Офіс</Link>
 
-                        <Link href="/" className="text-[17px] max-[768px]:text-[16px] max-[640px]:text-[12px]">Вітальня</Link>
+                        <Link href="/catalog/living-room" className="text-[17px] transition-colors hover:underline max-[768px]:text-[16px] max-[640px]:text-[12px]">Вітальня</Link>
 
-                        <Link href="/" className="text-[17px] max-[768px]:text-[16px] max-[640px]:text-[12px]">Кухня та їдальня</Link>
+                        <Link href="/catalog" className="text-[17px] transition-colors hover:underline max-[768px]:text-[16px] max-[640px]:text-[12px]">Кухня та їдальня</Link>
 
-                        <Link href="/" className="text-[17px] max-[768px]:text-[16px] max-[640px]:text-[12px]">Зберігання</Link>
+                        <Link href="/catalog" className="text-[17px] transition-colors hover:underline max-[768px]:text-[16px] max-[640px]:text-[12px]">Зберігання</Link>
 
-                        <Link href="/" className="text-[17px] max-[768px]:text-[16px] max-[640px]:text-[12px]">Для вікон</Link>
+                        <Link href="/catalog" className="text-[17px] transition-colors hover:underline max-[768px]:text-[16px] max-[640px]:text-[12px]">Для вікон</Link>
 
-                        <Link href="/" className="text-[17px] max-[768px]:text-[16px] max-[640px]:text-[12px]">Для саду</Link>
+                        <Link href="/catalog/garden" className="text-[17px] transition-colors hover:underline max-[768px]:text-[16px] max-[640px]:text-[12px]">Для саду</Link>
 
-                        <Link href="/" className="text-[17px] max-[768px]:text-[16px] max-[640px]:text-[12px]">Для дому</Link>
+                        <Link href="/catalog/decor" className="text-[17px] transition-colors hover:underline max-[768px]:text-[16px] max-[640px]:text-[12px]">Для дому</Link>
 
-                        <Link href="/" className="text-[17px] max-[768px]:text-[16px] max-[640px]:text-[12px]">Усі категорії</Link>
+                        <Link href="/catalog" className="text-[17px] transition-colors hover:underline max-[768px]:text-[16px] max-[640px]:text-[12px]">Усі категорії</Link>
                         </div>
                     </div>
 
@@ -58,15 +58,15 @@ export default function Footer() {
                         max-[768px]:gap-[14px]
                         max-[640px]:gap-[10px]">
 
-                        <Link href="/" className="text-[17px] max-[768px]:text-[16px] max-[640px]:text-[12px]">Зворотній зв’язок</Link>
+                        <Link href="/questions" className="text-[17px] transition-colors hover:underline max-[768px]:text-[16px] max-[640px]:text-[12px]">Зворотній зв’язок</Link>
 
-                        <Link href="/" className="text-[17px] max-[768px]:text-[16px] max-[640px]:text-[12px]">Магазини і графіки роботи</Link>
+                        <Link href="/shops" className="text-[17px] transition-colors hover:underline max-[768px]:text-[16px] max-[640px]:text-[12px]">Магазини і графіки роботи</Link>
 
-                        <Link href="/" className="text-[17px] max-[768px]:text-[16px] max-[640px]:text-[12px]">Умови та положення</Link>
+                        <Link href="/questions" className="text-[17px] transition-colors hover:underline max-[768px]:text-[16px] max-[640px]:text-[12px]">Умови та положення</Link>
 
-                        <Link href="/" className="text-[17px] max-[768px]:text-[16px] max-[640px]:text-[12px]">Доставка</Link>
+                        <Link href="/questions" className="text-[17px] transition-colors hover:underline max-[768px]:text-[16px] max-[640px]:text-[12px]">Доставка</Link>
 
-                        <Link href="/" className="text-[17px] max-[768px]:text-[16px] max-[640px]:text-[12px]">Політика конфіденційності</Link>
+                        <Link href="/questions" className="text-[17px] transition-colors hover:underline max-[768px]:text-[16px] max-[640px]:text-[12px]">Політика конфіденційності</Link>
                         </div>
                     </div>
 
@@ -80,17 +80,17 @@ export default function Footer() {
                         <div className="flex flex-col gap-[13px]
                         max-[768px]:gap-[14px]
                         max-[640px]:gap-[10px]">
-                            <Link href="/" className="text-[17px] max-[768px]:text-[16px] max-[640px]:text-[12px]">Про нас</Link>
+                            <Link href="/work" className="text-[17px] transition-colors hover:underline max-[768px]:text-[16px] max-[640px]:text-[12px]">Про нас</Link>
 
-                            <Link href="/" className="text-[17px] max-[768px]:text-[16px] max-[640px]:text-[12px]">Робота в Hyggy</Link>
+                            <Link href="/work" className="text-[17px] transition-colors hover:underline max-[768px]:text-[16px] max-[640px]:text-[12px]">Робота в HYGGY</Link>
 
-                            <Link href="/" className="text-[17px] max-[768px]:text-[16px] max-[640px]:text-[12px]">Підписатись на розсилку</Link>
+                            <Link href="/" className="text-[17px] transition-colors hover:underline max-[768px]:text-[16px] max-[640px]:text-[12px]">Підписатись на розсилку</Link>
 
-                            <Link href="/" className="text-[17px] max-[768px]:text-[16px] max-[640px]:text-[12px]">Блог</Link>
+                            <Link href="/blog" className="text-[17px] transition-colors hover:underline max-[768px]:text-[16px] max-[640px]:text-[12px]">Блог</Link>
 
-                            <Link href="/" className="text-[17px] max-[768px]:text-[16px] max-[640px]:text-[12px]">B2B</Link>
+                            <Link href="/" className="text-[17px] transition-colors hover:underline max-[768px]:text-[16px] max-[640px]:text-[12px]">B2B</Link>
 
-                            <Link href="/" className="text-[17px] max-[768px]:text-[16px] max-[640px]:text-[12px]">Корисні посилання</Link>
+                            <Link href="/questions" className="text-[17px] transition-colors hover:underline max-[768px]:text-[16px] max-[640px]:text-[12px]">Корисні посилання</Link>
                         </div>
                     </div>
 
@@ -124,7 +124,7 @@ export default function Footer() {
 
                                 <Link href="mailto:b2b@hyggy.com" className="text-[17px] max-[768px]:text-[16px] max-[640px]:text-[12px]">Імейл: b2b@hyggy.com</Link>
 
-                                <Link href="/" className="underline underline-offset-5 font-bold text-[17px] max-[768px]:text-[16px] max-[768px]:underline-offset-4 max-[640px]:text-[12px] max-[640px]:underline-offset-2">Зв&apos;яжіться з нами</Link>
+                                <Link href="/questions" className="underline underline-offset-5 font-bold text-[17px] max-[768px]:text-[16px] max-[768px]:underline-offset-4 max-[640px]:text-[12px] max-[640px]:underline-offset-2">Зв&apos;яжіться з нами</Link>
                             </div>
                         </div>
 
@@ -142,7 +142,7 @@ export default function Footer() {
 
                                 <Link href="tel:+380123456789" className="underline underline-offset-8 text-[17px] max-[768px]:text-[16px] max-[768px]:underline-offset-6 max-[640px]:text-[12px] max-[640px]:underline-offset-4">Тел: +380123456789</Link>
 
-                                <Link href="/" className="underline underline-offset-5 font-bold text-[17px] max-[768px]:text-[16px] max-[768px]:underline-offset-4 max-[640px]:text-[12px] max-[640px]:underline-offset-2">Зв&apos;яжіться з нами</Link>
+                                <Link href="/questions" className="underline underline-offset-5 font-bold text-[17px] max-[768px]:text-[16px] max-[768px]:underline-offset-4 max-[640px]:text-[12px] max-[640px]:underline-offset-2">Зв&apos;яжіться з нами</Link>
                             </div>
                         </div>
                     </div>

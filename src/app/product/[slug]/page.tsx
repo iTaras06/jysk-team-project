@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import ProductActions from "@/features/cart/ProductActions";
 import ProductCard from "@/components/ui/ProductCard";
+import Reveal from "@/components/ui/Reveal";
 import {
   getCategoryBySlug,
   getProductBySlug,
@@ -71,27 +72,29 @@ export default async function ProductPage({ params }: Params) {
         </nav>
 
         <div className="flex gap-11 max-[900px]:flex-col">
-          <div
-            className={`relative h-[460px] flex-1 overflow-hidden max-[900px]:h-[340px] ${product.color ?? "bg-[#E0E0E0]"}`}
-          >
-            {product.image && (
-              <Image
-                src={product.image}
-                alt={product.title}
-                fill
-                priority
-                sizes="(max-width: 900px) 100vw, 800px"
-                className="object-cover"
-              />
-            )}
-            {product.label && (
-              <span className="absolute top-6 left-6 z-[1] bg-[#00AAAD] px-4 py-1.5 text-[18px] font-medium text-white">
-                {product.label}
-              </span>
-            )}
-          </div>
+          <Reveal className="flex-1">
+            <div
+              className={`group relative h-[460px] overflow-hidden max-[900px]:h-[340px] ${product.color ?? "bg-[#E0E0E0]"}`}
+            >
+              {product.image && (
+                <Image
+                  src={product.image}
+                  alt={product.title}
+                  fill
+                  priority
+                  sizes="(max-width: 900px) 100vw, 800px"
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+              )}
+              {product.label && (
+                <span className="absolute top-6 left-6 z-[1] bg-[#00AAAD] px-4 py-1.5 text-[18px] font-medium text-white">
+                  {product.label}
+                </span>
+              )}
+            </div>
+          </Reveal>
 
-          <div className="flex w-[42%] flex-col max-[900px]:w-full">
+          <Reveal delay={120} className="flex w-[42%] flex-col max-[900px]:w-full">
             <h1 className="text-[40px] leading-tight font-bold">{product.title}</h1>
 
             <div className="mt-6 flex items-end gap-4">
@@ -118,15 +121,19 @@ export default async function ProductPage({ params }: Params) {
               <p>✓ Доставка додому або самовивіз із магазину</p>
               <p className="mt-2">✓ Повернення протягом періоду повернення</p>
             </div>
-          </div>
+          </Reveal>
         </div>
 
         {others.length > 0 && (
           <div className="mt-16">
-            <h2 className="mb-6 text-[28px] font-bold">Схожі товари</h2>
+            <Reveal>
+              <h2 className="mb-6 text-[28px] font-bold">Схожі товари</h2>
+            </Reveal>
             <div className="grid grid-cols-4 gap-7 max-[1024px]:grid-cols-3 max-[768px]:grid-cols-2 max-[480px]:grid-cols-1">
-              {others.map((p) => (
-                <ProductCard key={p.id} product={p} />
+              {others.map((p, i) => (
+                <Reveal key={p.id} delay={(i % 4) * 80}>
+                  <ProductCard product={p} />
+                </Reveal>
               ))}
             </div>
           </div>
